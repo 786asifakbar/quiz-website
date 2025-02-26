@@ -3,11 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Master</title>
+    <title>Pakistan Quiz Platform</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Add Urdu font support -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Add Urdu-specific styles */
+        .urdu-text {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            direction: rtl;
+            text-align: right;
+        }
+        
+        /* Add language switcher styles */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .language-switcher button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .language-switcher button.active {
+            background-color: #2196f3;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
+        <!-- Add language switcher -->
+        <div class="language-switcher">
+            <button onclick="switchLanguage('en')" class="active">English</button>
+            <button onclick="switchLanguage('ur')">اردو</button>
+        </div>
+        
         <div id="home" class="flex-column flex-center">
             <h1>Quiz Master</h1>
             <button id="start-btn" class="btn">Start Quiz</button>
@@ -179,6 +217,24 @@
             <h1>High Scores</h1>
             <ul id="highscores-list"></ul>
             <button id="home-btn" class="btn">Go Home</button>
+        </div>
+        
+        <!-- Add Urdu quiz container -->
+        <div id="urduQuizContainer" style="display: none;">
+            <div class="urdu-text">
+                <h1>پاکستان کوئز پلیٹ فارم</h1>
+                <div class="category-selection">
+                    <h2>کیٹیگری منتخب کریں</h2>
+                    <div class="categories">
+                        <button onclick="loadQuiz('grammar')">اردو گرامر</button>
+                        <button onclick="loadQuiz('literature')">اردو ادب</button>
+                        <button onclick="loadQuiz('islamiat')">اسلامیات</button>
+                        <button onclick="loadQuiz('history')">پاکستانی تاریخ</button>
+                        <button onclick="loadQuiz('science')">سائنس</button>
+                        <button onclick="loadQuiz('current')">موجودہ معاملات</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="questions.js"></script>
