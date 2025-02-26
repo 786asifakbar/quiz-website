@@ -17,52 +17,119 @@
         <div id="category-selection" class="flex-column flex-center hide">
             <h2>Select a Category</h2>
             <div class="categories-grid">
-                <button class="btn category-btn" data-category="programming">Programming</button>
-                <button class="btn category-btn" data-category="english">English</button>
-                <button class="btn category-btn" data-category="mathematics">Mathematics</button>
-                <button class="btn category-btn" data-category="history">History</button>
-                <button class="btn category-btn" data-category="science">Science</button>
-                <button class="btn category-btn" data-category="general">General Knowledge</button>
+                <button class="btn category-btn" data-category="school">School/College Subjects</button>
+                <button class="btn category-btn" data-category="competitive">Competitive Exams</button>
+                <button class="btn category-btn" data-category="professional">Professional & Technical</button>
+                <button class="btn category-btn" data-category="language">Languages & Regional Studies</button>
+                <button class="btn category-btn" data-category="religious">Religious Education</button>
+                <button class="btn category-btn" data-category="modern">Modern Fields</button>
             </div>
         </div>
 
         <div id="subject-selection" class="flex-column flex-center hide">
             <h2>Select a Subject</h2>
-            <div id="programming-subjects" class="subjects-grid category-subjects hide">
-                <button class="btn subject-btn" data-subject="html">HTML</button>
-                <button class="btn subject-btn" data-subject="css">CSS</button>
-                <button class="btn subject-btn" data-subject="javascript">JavaScript</button>
-                <button class="btn subject-btn" data-subject="reactjs">React.js</button>
-                <button class="btn subject-btn" data-subject="nodejs">Node.js</button>
-                <button class="btn subject-btn" data-subject="express">Express.js</button>
+            <!-- School/College Subjects -->
+            <div id="school-subjects" class="subjects-grid category-subjects hide">
+                <div class="subject-group">
+                    <h3>Compulsory Subjects</h3>
+                    <button class="btn subject-btn" data-subject="urdu">Urdu</button>
+                    <button class="btn subject-btn" data-subject="english">English</button>
+                    <button class="btn subject-btn" data-subject="mathematics">Mathematics</button>
+                    <button class="btn subject-btn" data-subject="pak_studies">Pakistan Studies</button>
+                    <button class="btn subject-btn" data-subject="islamiat">Islamic Studies</button>
+                    <button class="btn subject-btn" data-subject="science">General Science</button>
+                </div>
+                <div class="subject-group">
+                    <h3>Pre-Medical</h3>
+                    <button class="btn subject-btn" data-subject="biology">Biology</button>
+                    <button class="btn subject-btn" data-subject="chemistry">Chemistry</button>
+                    <button class="btn subject-btn" data-subject="physics">Physics</button>
+                </div>
+                <div class="subject-group">
+                    <h3>Pre-Engineering</h3>
+                    <button class="btn subject-btn" data-subject="math_eng">Mathematics</button>
+                    <button class="btn subject-btn" data-subject="physics_eng">Physics</button>
+                    <button class="btn subject-btn" data-subject="chemistry_eng">Chemistry</button>
+                </div>
+                <div class="subject-group">
+                    <h3>Commerce</h3>
+                    <button class="btn subject-btn" data-subject="accounting">Accounting</button>
+                    <button class="btn subject-btn" data-subject="business">Business Studies</button>
+                    <button class="btn subject-btn" data-subject="economics">Economics</button>
+                </div>
             </div>
-            <div id="english-subjects" class="subjects-grid category-subjects hide">
-                <button class="btn subject-btn" data-subject="grammar">Grammar</button>
-                <button class="btn subject-btn" data-subject="vocabulary">Vocabulary</button>
-                <button class="btn subject-btn" data-subject="comprehension">Comprehension</button>
-                <button class="btn subject-btn" data-subject="literature">Literature</button>
+
+            <!-- Competitive Exams -->
+            <div id="competitive-subjects" class="subjects-grid category-subjects hide">
+                <div class="subject-group">
+                    <h3>CSS/PMS</h3>
+                    <button class="btn subject-btn" data-subject="css_english">English Essay & Précis</button>
+                    <button class="btn subject-btn" data-subject="pak_affairs">Pakistan Affairs</button>
+                    <button class="btn subject-btn" data-subject="ir">International Relations</button>
+                    <button class="btn subject-btn" data-subject="current_affairs">Current Affairs</button>
+                </div>
+                <div class="subject-group">
+                    <h3>MDCAT</h3>
+                    <button class="btn subject-btn" data-subject="mdcat_bio">Biology</button>
+                    <button class="btn subject-btn" data-subject="mdcat_chem">Chemistry</button>
+                    <button class="btn subject-btn" data-subject="mdcat_phy">Physics</button>
+                </div>
+                <div class="subject-group">
+                    <h3>ECAT</h3>
+                    <button class="btn subject-btn" data-subject="ecat_math">Mathematics</button>
+                    <button class="btn subject-btn" data-subject="ecat_phy">Physics</button>
+                    <button class="btn subject-btn" data-subject="logical">Logical Reasoning</button>
+                </div>
             </div>
-            <div id="mathematics-subjects" class="subjects-grid category-subjects hide">
-                <button class="btn subject-btn" data-subject="algebra">Algebra</button>
-                <button class="btn subject-btn" data-subject="geometry">Geometry</button>
-                <button class="btn subject-btn" data-subject="calculus">Calculus</button>
-                <button class="btn subject-btn" data-subject="statistics">Statistics</button>
+
+            <!-- Professional & Technical -->
+            <div id="professional-subjects" class="subjects-grid category-subjects hide">
+                <div class="subject-group">
+                    <h3>Engineering</h3>
+                    <button class="btn subject-btn" data-subject="civil">Civil Engineering</button>
+                    <button class="btn subject-btn" data-subject="mechanical">Mechanical Engineering</button>
+                    <button class="btn subject-btn" data-subject="electrical">Electrical Engineering</button>
+                    <button class="btn subject-btn" data-subject="software">Software Engineering</button>
+                </div>
+                <div class="subject-group">
+                    <h3>Medical</h3>
+                    <button class="btn subject-btn" data-subject="mbbs">MBBS</button>
+                    <button class="btn subject-btn" data-subject="dentistry">Dentistry</button>
+                    <button class="btn subject-btn" data-subject="pharmacy">Pharmacy</button>
+                </div>
+                <div class="subject-group">
+                    <h3>Vocational (TEVTA)</h3>
+                    <button class="btn subject-btn" data-subject="electrical_wiring">Electrical Wiring</button>
+                    <button class="btn subject-btn" data-subject="plumbing">Plumbing</button>
+                    <button class="btn subject-btn" data-subject="fashion">Fashion Design</button>
+                </div>
             </div>
-            <div id="history-subjects" class="subjects-grid category-subjects hide">
-                <button class="btn subject-btn" data-subject="pakistan_history">Pakistan History</button>
-                <button class="btn subject-btn" data-subject="world_history">World History</button>
-                <button class="btn subject-btn" data-subject="islamic_history">Islamic History</button>
+
+            <!-- Languages & Regional Studies -->
+            <div id="language-subjects" class="subjects-grid category-subjects hide">
+                <button class="btn subject-btn" data-subject="sindhi">Sindhi</button>
+                <button class="btn subject-btn" data-subject="punjabi">Punjabi</button>
+                <button class="btn subject-btn" data-subject="pashto">Pashto</button>
+                <button class="btn subject-btn" data-subject="balochi">Balochi</button>
+                <button class="btn subject-btn" data-subject="urdu_lit">Urdu Literature</button>
             </div>
-            <div id="science-subjects" class="subjects-grid category-subjects hide">
-                <button class="btn subject-btn" data-subject="physics">Physics</button>
-                <button class="btn subject-btn" data-subject="chemistry">Chemistry</button>
-                <button class="btn subject-btn" data-subject="biology">Biology</button>
+
+            <!-- Religious Education -->
+            <div id="religious-subjects" class="subjects-grid category-subjects hide">
+                <button class="btn subject-btn" data-subject="quran">Quranic Studies</button>
+                <button class="btn subject-btn" data-subject="hadith">Hadith</button>
+                <button class="btn subject-btn" data-subject="fiqh">Fiqh</button>
+                <button class="btn subject-btn" data-subject="arabic">Arabic Language</button>
             </div>
-            <div id="general-subjects" class="subjects-grid category-subjects hide">
-                <button class="btn subject-btn" data-subject="current_affairs">Current Affairs</button>
-                <button class="btn subject-btn" data-subject="geography">Geography</button>
-                <button class="btn subject-btn" data-subject="sports">Sports</button>
+
+            <!-- Modern Fields -->
+            <div id="modern-subjects" class="subjects-grid category-subjects hide">
+                <button class="btn subject-btn" data-subject="ai">Artificial Intelligence</button>
+                <button class="btn subject-btn" data-subject="cyber">Cybersecurity</button>
+                <button class="btn subject-btn" data-subject="digital">Digital Marketing</button>
+                <button class="btn subject-btn" data-subject="renewable">Renewable Energy</button>
             </div>
+
             <button id="back-to-categories" class="btn">Back to Categories</button>
         </div>
 
