@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="home" class="flex-column flex-center">
+            <h1>Quiz Master</h1>
+            <button id="start-btn" class="btn">Start Quiz</button>
+            <button id="highscores-btn" class="btn">High Scores</button>
+        </div>
+
+        <div id="quiz" class="hide">
+            <div class="quiz-header">
+                <div class="hud">
+                    <div class="hud-item">
+                        <p class="hud-prefix">Question</p>
+                        <h2 class="hud-main-text" id="questionCounter">1/10</h2>
+                    </div>
+                    <div class="hud-item">
+                        <p class="hud-prefix">Score</p>
+                        <h2 class="hud-main-text" id="score">0</h2>
+                    </div>
+                    <div class="hud-item">
+                        <p class="hud-prefix">Time</p>
+                        <h2 class="hud-main-text" id="timer">60</h2>
+                    </div>
+                </div>
+            </div>
+            <div id="question-container">
+                <h2 id="question">Question goes here</h2>
+                <div id="answer-buttons" class="btn-grid">
+                    <!-- Answer buttons will be inserted here -->
+                </div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="btn">Previous</button>
+                <button id="next-btn" class="btn">Next</button>
+            </div>
+        </div>
+
+        <div id="end" class="flex-column flex-center hide">
+            <h1>Quiz Complete!</h1>
+            <h2 id="final-score">Your score: 0</h2>
+            <form class="end-form-container">
+                <h2>Enter your name to save your score:</h2>
+                <input type="text" name="name" id="username" placeholder="Enter your name">
+                <button class="btn" id="save-score-btn" type="submit" disabled>Save Score</button>
+            </form>
+            <button id="play-again" class="btn">Play Again</button>
+            <button id="go-home" class="btn">Go Home</button>
+        </div>
+
+        <div id="highscores" class="flex-column flex-center hide">
+            <h1>High Scores</h1>
+            <ul id="highscores-list"></ul>
+            <button id="home-btn" class="btn">Go Home</button>
+        </div>
+    </div>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
