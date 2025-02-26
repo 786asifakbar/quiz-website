@@ -1,5 +1,7 @@
 // DOM Elements
 const homeElement = document.getElementById('home');
+const categorySelectionElement = document.getElementById('category-selection');
+const subjectSelectionElement = document.getElementById('subject-selection');
 const quizElement = document.getElementById('quiz');
 const endElement = document.getElementById('end');
 const highscoresElement = document.getElementById('highscores');
@@ -8,6 +10,7 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
 const prevButton = document.getElementById('prev-btn');
 const startButton = document.getElementById('start-btn');
+const backToCategoriesButton = document.getElementById('back-to-categories');
 const questionCounterElement = document.getElementById('questionCounter');
 const scoreElement = document.getElementById('score');
 const timerElement = document.getElementById('timer');
@@ -19,6 +22,7 @@ const highscoresList = document.getElementById('highscores-list');
 const playAgainButton = document.getElementById('play-again');
 const goHomeButton = document.getElementById('go-home');
 const homeButton = document.getElementById('home-btn');
+const feedbackElement = document.getElementById('feedback');
 
 // Quiz state variables
 let currentQuestionIndex = 0;
@@ -26,12 +30,24 @@ let score = 0;
 let timeLeft = 60;
 let timer;
 let answers = [];
-
-// Initialize answers array
-questions.forEach(() => answers.push(null));
+let currentCategory = '';
+let currentSubject = '';
+let questions = [];
 
 // Event Listeners
-startButton.addEventListener('click', startQuiz);
+startButton.addEventListener('click', showCategorySelection);
+backToCategoriesButton.addEventListener('click', showCategorySelection);
+
+// Category selection
+document.querySelectorAll('.category-btn').forEach(button => {
+    button.addEventListener('click', () => selectCategory(button.dataset.category));
+});
+
+// Subject selection
+document.querySelectorAll('.subject-btn').forEach(button => {
+    button.addEventListener('click', () => startQuiz(button.dataset.subject));
+});
+
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     setNextQuestion();
@@ -45,12 +61,47 @@ usernameInput.addEventListener('input', () => {
     saveScoreButton.disabled = !usernameInput.value;
 });
 saveScoreButton.addEventListener('click', saveHighScore);
-playAgainButton.addEventListener('click', startQuiz);
+playAgainButton.addEventListener('click', showCategorySelection);
 goHomeButton.addEventListener('click', goHome);
 homeButton.addEventListener('click', goHome);
 
-function startQuiz() {
+function showCategorySelection() {
     homeElement.classList.add('hide');
+    categorySelectionElement.classList.remove('hide');
+    subjectSelectionElement.classList.add('hide');
+    quizElement.classList.add('hide');
+    endElement.classList.add('hide');
+    highscoresElement.classList.add('hide');
+    
+    // Hide all subject grids
+    document.querySelectorAll('.category-subjects').forEach(grid => {
+        grid.classList.add('hide');
+    });
+}
+
+function selectCategory(category) {
+    currentCategory = category;
+    categorySelectionElement.classList.add('hide');
+    subjectSelectionElement.classList.remove('hide');
+    
+    // Hide all subject grids and show the selected category's subjects
+    document.querySelectorAll('.category-subjects').forEach(grid => {
+        grid.classList.add('hide');
+    });
+    document.getElementById(`${category}-subjects`).classList.remove('hide');
+}
+
+function showSubjectSelection() {
+    subjectSelectionElement.classList.remove('hide');
+    quizElement.classList.add('hide');
+    endElement.classList.add('hide');
+    highscoresElement.classList.add('hide');
+}
+
+function startQuiz(subject) {
+    currentSubject = subject;
+    questions = quizData[currentCategory][subject];
+    subjectSelectionElement.classList.add('hide');
     quizElement.classList.remove('hide');
     currentQuestionIndex = 0;
     score = 0;
@@ -60,25 +111,68 @@ function startQuiz() {
     setNextQuestion();
 }
 
+function showQuestion(question) {
+    questionElement.innerText = question.question;
+    feedbackElement.classList.add('hide');
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+    }
+    
+    question.answers.forEach((answer, index) => {
+        const button = document.createElement('button');
+        button.innerText = answer.text;
+        button.classList.add('btn');
+        button.addEventListener('click', () => selectAnswer(index));
+        answerButtonsElement.appendChild(button);
+    });
+}
+
+function selectAnswer(answerIndex) {
+    const currentQuestion = questions[currentQuestionIndex];
+    const isCorrect = currentQuestion.answers[answerIndex].correct;
+    
+    // Show feedback
+    feedbackElement.classList.remove('hide', 'correct', 'incorrect');
+    feedbackElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+    feedbackElement.textContent = isCorrect ? 'Correct!' : 'Wrong answer!';
+    
+    // Update score if this is the first attempt
+    if (answers[currentQuestionIndex] === null && isCorrect) {
+        score++;
+        updateScore();
+    }
+    
+    answers[currentQuestionIndex] = answerIndex;
+    
+    // Disable all buttons
+    const buttons = answerButtonsElement.children;
+    for (let button of buttons) {
+        button.disabled = true;
+    }
+    
+    // Show correct answer
+    buttons[answerIndex].classList.add(isCorrect ? 'correct' : 'incorrect');
+    if (!isCorrect) {
+        const correctIndex = currentQuestion.answers.findIndex(answer => answer.correct);
+        buttons[correctIndex].classList.add('correct');
+    }
+    
+    // Automatically move to next question after 1.5 seconds
+    setTimeout(() => {
+        if (currentQuestionIndex < questions.length - 1) {
+            currentQuestionIndex++;
+            setNextQuestion();
+        } else {
+            endQuiz();
+        }
+    }, 1500);
+}
+
 function setNextQuestion() {
     resetState();
     showQuestion(questions[currentQuestionIndex]);
     updateNavigationButtons();
     updateQuestionCounter();
-}
-
-function showQuestion(question) {
-    questionElement.innerText = question.question;
-    question.answers.forEach((answer, index) => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('btn');
-        if (answers[currentQuestionIndex] === index) {
-            button.classList.add('selected');
-        }
-        button.addEventListener('click', () => selectAnswer(index));
-        answerButtonsElement.appendChild(button);
-    });
 }
 
 function resetState() {
@@ -87,50 +181,9 @@ function resetState() {
     }
 }
 
-function selectAnswer(answerIndex) {
-    const buttons = answerButtonsElement.children;
-    const currentQuestion = questions[currentQuestionIndex];
-    
-    // Remove previous selection classes
-    for (let button of buttons) {
-        button.classList.remove('selected', 'correct', 'incorrect');
-    }
-    
-    // Add selected class to clicked button
-    const selectedButton = buttons[answerIndex];
-    selectedButton.classList.add('selected');
-    
-    // Check if answer is correct and show appropriate feedback
-    if (currentQuestion.answers[answerIndex].correct) {
-        selectedButton.classList.add('correct');
-        if (answers[currentQuestionIndex] === null) {
-            score++;
-            updateScore();
-        }
-    } else {
-        selectedButton.classList.add('incorrect');
-        // Show the correct answer
-        buttons.forEach((button, index) => {
-            if (currentQuestion.answers[index].correct) {
-                button.classList.add('correct');
-            }
-        });
-    }
-    
-    answers[currentQuestionIndex] = answerIndex;
-}
-
 function updateNavigationButtons() {
     prevButton.style.display = currentQuestionIndex === 0 ? 'none' : 'block';
-    nextButton.innerText = currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next';
-    
-    if (currentQuestionIndex === questions.length - 1) {
-        nextButton.removeEventListener('click', () => {
-            currentQuestionIndex++;
-            setNextQuestion();
-        });
-        nextButton.addEventListener('click', endQuiz);
-    }
+    nextButton.style.display = currentQuestionIndex === questions.length - 1 ? 'none' : 'block';
 }
 
 function updateQuestionCounter() {
