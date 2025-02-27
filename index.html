@@ -3,90 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pakistan Knowledge Hub - Interactive Quiz</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Pakistan Quiz</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar -->
+    <div class="container">
         <div class="sidebar">
-            <div class="logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg" alt="Pakistan Flag" class="flag-icon">
-                <h2>Pakistan Quiz</h2>
-            </div>
-            <nav class="category-nav">
-                <h3>Categories</h3>
-                <ul id="categoryList">
-                    <li data-category="all" class="active"><i class="fas fa-globe"></i> All Subjects</li>
-                    <li data-category="history"><i class="fas fa-history"></i> History</li>
-                    <li data-category="geography"><i class="fas fa-mountain"></i> Geography</li>
-                    <li data-category="culture"><i class="fas fa-theater-masks"></i> Culture</li>
-                    <li data-category="sports"><i class="fas fa-football-ball"></i> Sports</li>
-                    <li data-category="economy"><i class="fas fa-chart-line"></i> Economy</li>
-                    <li data-category="science"><i class="fas fa-atom"></i> Science & Tech</li>
-                    <li data-category="literature"><i class="fas fa-book"></i> Literature</li>
-                    <li data-category="current-affairs"><i class="fas fa-newspaper"></i> Current Affairs</li>
-                </ul>
-            </nav>
-            <div class="quiz-stats">
-                <h3>Your Progress</h3>
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <span class="stat-label">Questions Attempted</span>
-                        <span class="stat-value" id="questionsAttempted">0</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Average Score</span>
-                        <span class="stat-value" id="averageScore">0%</span>
-                    </div>
-                </div>
+            <h2>Categories</h2>
+            <ul id="categoryList"></ul>
+            <div class="user-stats">
+                <h3>Your Stats</h3>
+                <p>Questions Attempted: <span id="questionsAttempted">0</span></p>
+                <p>Average Score: <span id="averageScore">0%</span></p>
             </div>
         </div>
 
-        <!-- Main Content -->
-        <main class="main-content">
+        <div class="main-content">
             <div class="quiz-header">
-                <div class="quiz-info">
-                    <h1>Welcome to Pakistan Knowledge Hub</h1>
-                    <p>Test your knowledge about Pakistan's rich history, culture, and heritage</p>
-                </div>
-                <div class="quiz-controls">
-                    <select id="difficultySelect" class="difficulty-select">
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
-                    <button id="startQuiz" class="start-btn">Start Quiz</button>
+                <h1>Pakistan Quiz</h1>
+                <div class="subject-grid" id="subjectGrid">
+                    <!-- Subjects will be dynamically added here -->
                 </div>
             </div>
 
-            <!-- Quiz Container -->
-            <div id="quizContainer" class="quiz-container hide">
-                <div class="progress-bar">
-                    <div class="progress" id="quizProgress"></div>
+            <div class="quiz-setup hide" id="quizSetup">
+                <h2 id="selectedSubject">Selected Subject</h2>
+                <div class="setup-options">
+                    <div class="difficulty-select">
+                        <label for="difficultySelect">Select Difficulty:</label>
+                        <select id="difficultySelect">
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="question-count">
+                        <label for="questionCount">Number of Questions:</label>
+                        <select id="questionCount">
+                            <option value="5">5 Questions</option>
+                            <option value="10" selected>10 Questions</option>
+                            <option value="20">20 Questions</option>
+                            <option value="30">30 Questions</option>
+                        </select>
+                    </div>
+                    <button id="startQuiz">Start Quiz</button>
                 </div>
-                <div id="questionCounter" class="question-counter">Question 1 of 10</div>
+            </div>
+
+            <div id="quizContainer" class="hide">
+                <div class="quiz-progress">
+                    <div id="questionCounter">Question 1 of 10</div>
+                    <div class="progress-bar">
+                        <div id="quizProgress" class="progress"></div>
+                    </div>
+                </div>
                 <div id="quiz"></div>
-                <div class="quiz-navigation">
-                    <button id="prevQuestion" class="nav-btn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button id="nextQuestion" class="nav-btn">Next <i class="fas fa-arrow-right"></i></button>
+                <div class="navigation-buttons">
+                    <button id="prevQuestion" class="nav-btn">Previous</button>
+                    <button id="nextQuestion" class="nav-btn">Next</button>
                     <button id="submit" class="submit-btn hide">Submit Quiz</button>
                 </div>
             </div>
 
-            <!-- Results Container -->
-            <div id="results" class="results-container hide">
-                <h2>Quiz Results</h2>
-                <div class="results-summary"></div>
-                <div class="category-breakdown"></div>
-                <div class="action-buttons">
-                    <button id="reviewAnswers" class="review-btn">Review Answers</button>
-                    <button id="newQuiz" class="new-quiz-btn">Take New Quiz</button>
-                </div>
+            <div id="results" class="hide">
+                <!-- Results will be displayed here -->
             </div>
-        </main>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
