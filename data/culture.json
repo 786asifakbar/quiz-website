@@ -1,0 +1,79 @@
+{
+    "questions": [
+        {
+            "id": "c1",
+            "category": "Culture",
+            "subcategory": "Languages",
+            "difficulty": "easy",
+            "question": "What is the national language of Pakistan?",
+            "answers": {
+                "a": "English",
+                "b": "Urdu",
+                "c": "Punjabi",
+                "d": "Arabic"
+            },
+            "correctAnswer": "b",
+            "feedback": "Urdu is the national language of Pakistan, though English is also an official language."
+        },
+        {
+            "id": "c2",
+            "category": "Culture",
+            "subcategory": "National Symbols",
+            "difficulty": "easy",
+            "question": "What is Pakistan's national flower?",
+            "answers": {
+                "a": "Rose",
+                "b": "Jasmine",
+                "c": "Tulip",
+                "d": "Lily"
+            },
+            "correctAnswer": "b",
+            "feedback": "Jasmine (Chambeli) is Pakistan's national flower, known for its sweet fragrance."
+        },
+        {
+            "id": "c3",
+            "category": "Culture",
+            "subcategory": "Languages",
+            "difficulty": "medium",
+            "question": "Which is the most widely spoken regional language in Pakistan?",
+            "answers": {
+                "a": "Sindhi",
+                "b": "Punjabi",
+                "c": "Pashto",
+                "d": "Balochi"
+            },
+            "correctAnswer": "b",
+            "feedback": "Punjabi is the most widely spoken regional language in Pakistan, with about 44% of the population speaking it."
+        },
+        {
+            "id": "c4",
+            "category": "Culture",
+            "subcategory": "Traditions",
+            "difficulty": "medium",
+            "question": "What is the traditional dress for men in Pakistan?",
+            "answers": {
+                "a": "Shalwar Kameez",
+                "b": "Dhoti",
+                "c": "Kurta",
+                "d": "Sherwani"
+            },
+            "correctAnswer": "a",
+            "feedback": "Shalwar Kameez is the traditional dress for both men and women in Pakistan."
+        },
+        {
+            "id": "c5",
+            "category": "Culture",
+            "subcategory": "Arts",
+            "difficulty": "hard",
+            "question": "Which traditional art form involves intricate patterns made with henna?",
+            "answers": {
+                "a": "Rangoli",
+                "b": "Mehndi",
+                "c": "Truck Art",
+                "d": "Calligraphy"
+            },
+            "correctAnswer": "b",
+            "feedback": "Mehndi is the art of applying henna in intricate patterns, commonly used in celebrations and weddings."
+        }
+    ]
+}

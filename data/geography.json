@@ -1,0 +1,79 @@
+{
+    "questions": [
+        {
+            "id": "g1",
+            "category": "Geography",
+            "subcategory": "Physical Geography",
+            "difficulty": "easy",
+            "question": "What is the capital of Pakistan?",
+            "answers": {
+                "a": "Lahore",
+                "b": "Islamabad",
+                "c": "Karachi",
+                "d": "Peshawar"
+            },
+            "correctAnswer": "b",
+            "feedback": "Islamabad has been the capital of Pakistan since 1967, taking over from Karachi."
+        },
+        {
+            "id": "g2",
+            "category": "Geography",
+            "subcategory": "Physical Geography",
+            "difficulty": "medium",
+            "question": "Which mountain is the highest in Pakistan?",
+            "answers": {
+                "a": "Nanga Parbat",
+                "b": "K2",
+                "c": "Broad Peak",
+                "d": "Gasherbrum I"
+            },
+            "correctAnswer": "b",
+            "feedback": "K2, at 8,611 meters, is the second-highest mountain in the world and the highest in Pakistan."
+        },
+        {
+            "id": "g3",
+            "category": "Geography",
+            "subcategory": "Administrative",
+            "difficulty": "easy",
+            "question": "What is the largest province of Pakistan by area?",
+            "answers": {
+                "a": "Balochistan",
+                "b": "Punjab",
+                "c": "Sindh",
+                "d": "Khyber Pakhtunkhwa"
+            },
+            "correctAnswer": "a",
+            "feedback": "Balochistan is Pakistan's largest province by area, covering approximately 44% of the country's total land area."
+        },
+        {
+            "id": "g4",
+            "category": "Geography",
+            "subcategory": "Rivers",
+            "difficulty": "easy",
+            "question": "Which is the longest river in Pakistan?",
+            "answers": {
+                "a": "Indus River",
+                "b": "Chenab River",
+                "c": "Jhelum River",
+                "d": "Ravi River"
+            },
+            "correctAnswer": "a",
+            "feedback": "The Indus River is Pakistan's longest and most important river system, flowing for about 3,180 km within Pakistan."
+        },
+        {
+            "id": "g5",
+            "category": "Geography",
+            "subcategory": "Climate",
+            "difficulty": "medium",
+            "question": "Which desert is located in southeastern Pakistan?",
+            "answers": {
+                "a": "Thar Desert",
+                "b": "Cholistan Desert",
+                "c": "Kharan Desert",
+                "d": "Thal Desert"
+            },
+            "correctAnswer": "a",
+            "feedback": "The Thar Desert is located in southeastern Pakistan and extends into India, forming a natural boundary between the two countries."
+        }
+    ]
+}

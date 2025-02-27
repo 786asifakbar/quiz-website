@@ -1,0 +1,79 @@
+{
+    "questions": [
+        {
+            "id": "h1",
+            "category": "History",
+            "subcategory": "Independence Movement",
+            "difficulty": "easy",
+            "question": "In which year did Pakistan gain independence?",
+            "answers": {
+                "a": "1945",
+                "b": "1947",
+                "c": "1948",
+                "d": "1950"
+            },
+            "correctAnswer": "b",
+            "feedback": "Pakistan gained independence from British rule on August 14, 1947."
+        },
+        {
+            "id": "h2",
+            "category": "History",
+            "subcategory": "Independence Movement",
+            "difficulty": "easy",
+            "question": "Who is known as the founder of Pakistan?",
+            "answers": {
+                "a": "Quaid-e-Azam Muhammad Ali Jinnah",
+                "b": "Allama Iqbal",
+                "c": "Liaquat Ali Khan",
+                "d": "Sir Syed Ahmad Khan"
+            },
+            "correctAnswer": "a",
+            "feedback": "Quaid-e-Azam Muhammad Ali Jinnah is known as the founder of Pakistan and served as its first Governor-General."
+        },
+        {
+            "id": "h3",
+            "category": "History",
+            "subcategory": "Post-Independence",
+            "difficulty": "medium",
+            "question": "Who was Pakistan's first Prime Minister?",
+            "answers": {
+                "a": "Muhammad Ali Jinnah",
+                "b": "Liaquat Ali Khan",
+                "c": "Khawaja Nazimuddin",
+                "d": "Ibrahim Ismail Chundrigar"
+            },
+            "correctAnswer": "b",
+            "feedback": "Liaquat Ali Khan served as Pakistan's first Prime Minister from 1947 until his assassination in 1951."
+        },
+        {
+            "id": "h4",
+            "category": "History",
+            "subcategory": "Modern Era",
+            "difficulty": "medium",
+            "question": "When did Pakistan become a nuclear power?",
+            "answers": {
+                "a": "1998",
+                "b": "1999",
+                "c": "2000",
+                "d": "2001"
+            },
+            "correctAnswer": "a",
+            "feedback": "Pakistan conducted its nuclear tests in May 1998, becoming the world's 7th nuclear power."
+        },
+        {
+            "id": "h5",
+            "category": "History",
+            "subcategory": "Independence Movement",
+            "difficulty": "medium",
+            "question": "Which historical resolution called for the creation of Pakistan?",
+            "answers": {
+                "a": "Delhi Resolution",
+                "b": "Lahore Resolution",
+                "c": "Karachi Resolution",
+                "d": "Peshawar Resolution"
+            },
+            "correctAnswer": "b",
+            "feedback": "The Lahore Resolution of 1940, also known as the Pakistan Resolution, formally called for the creation of independent Muslim states."
+        }
+    ]
+}

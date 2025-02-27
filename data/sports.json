@@ -1,0 +1,79 @@
+{
+    "questions": [
+        {
+            "id": "s1",
+            "category": "Sports",
+            "subcategory": "National Sports",
+            "difficulty": "easy",
+            "question": "What is Pakistan's national sport?",
+            "answers": {
+                "a": "Cricket",
+                "b": "Hockey",
+                "c": "Football",
+                "d": "Squash"
+            },
+            "correctAnswer": "b",
+            "feedback": "Field Hockey is Pakistan's national sport, though cricket is more popular among the masses."
+        },
+        {
+            "id": "s2",
+            "category": "Sports",
+            "subcategory": "Cricket",
+            "difficulty": "medium",
+            "question": "In which year did Pakistan win its first Cricket World Cup?",
+            "answers": {
+                "a": "1987",
+                "b": "1992",
+                "c": "1996",
+                "d": "1999"
+            },
+            "correctAnswer": "b",
+            "feedback": "Pakistan won its first Cricket World Cup in 1992 under Imran Khan's captaincy."
+        },
+        {
+            "id": "s3",
+            "category": "Sports",
+            "subcategory": "Hockey",
+            "difficulty": "medium",
+            "question": "How many Olympic Gold Medals has Pakistan won in Hockey?",
+            "answers": {
+                "a": "1",
+                "b": "2",
+                "c": "3",
+                "d": "4"
+            },
+            "correctAnswer": "c",
+            "feedback": "Pakistan has won 3 Olympic Gold Medals in Hockey (1960, 1968, and 1984)."
+        },
+        {
+            "id": "s4",
+            "category": "Sports",
+            "subcategory": "Squash",
+            "difficulty": "medium",
+            "question": "Who is considered the greatest squash player from Pakistan?",
+            "answers": {
+                "a": "Jahangir Khan",
+                "b": "Jansher Khan",
+                "c": "Qamar Zaman",
+                "d": "Hashim Khan"
+            },
+            "correctAnswer": "a",
+            "feedback": "Jahangir Khan is considered the greatest squash player of all time, with 10 British Open titles and an unbroken winning streak of 555 matches."
+        },
+        {
+            "id": "s5",
+            "category": "Sports",
+            "subcategory": "Cricket",
+            "difficulty": "hard",
+            "question": "Who was Pakistan's captain when they won the T20 World Cup in 2009?",
+            "answers": {
+                "a": "Shahid Afridi",
+                "b": "Younis Khan",
+                "c": "Misbah-ul-Haq",
+                "d": "Mohammad Yousuf"
+            },
+            "correctAnswer": "b",
+            "feedback": "Younis Khan led Pakistan to victory in the 2009 T20 World Cup, defeating Sri Lanka in the final at Lord's."
+        }
+    ]
+}
