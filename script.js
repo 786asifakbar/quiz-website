@@ -24,6 +24,27 @@ const goHomeButton = document.getElementById('go-home');
 const homeButton = document.getElementById('home-btn');
 const feedbackElement = document.getElementById('feedback');
 
+import translations from './translations.js';
+
+// Language handling
+let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+
+function updatePageLanguage() {
+    document.documentElement.lang = currentLanguage;
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[currentLanguage] && translations[currentLanguage][key]) {
+            element.textContent = translations[currentLanguage][key];
+        }
+    });
+}
+
+// Update language when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    updatePageLanguage();
+});
+
 // Quiz state variables
 let currentQuestionIndex = 0;
 let score = 0;
