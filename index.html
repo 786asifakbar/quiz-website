@@ -1,243 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pakistan Quiz Platform</title>
+    <title>Quiz Website</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Add Urdu font support -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Add multilingual font support -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Sindhi:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Add Urdu-specific styles */
-        .urdu-text {
-            font-family: 'Noto Nastaliq Urdu', serif;
+        /* RTL language support */
+        [lang="ur"], [lang="sd"] {
             direction: rtl;
-            text-align: right;
         }
         
-        /* Add language switcher styles */
-        .language-switcher {
+        [lang="ur"] {
+            font-family: 'Noto Nastaliq Urdu', serif;
+        }
+        
+        [lang="sd"] {
+            font-family: 'Noto Sans Sindhi', serif;
+        }
+
+        .progress-container {
+            width: 100%;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+
+        .break-screen {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
             z-index: 1000;
         }
-        
-        .language-switcher button {
-            padding: 10px 20px;
-            margin: 0 5px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
+
+        .break-content {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
-        .language-switcher button.active {
-            background-color: #2196f3;
-            color: white;
+
+        .quiz-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .question-counter {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Add language switcher -->
-        <div class="language-switcher">
-            <button onclick="switchLanguage('en')" class="active">English</button>
-            <button onclick="switchLanguage('ur')">اردو</button>
-        </div>
-        
         <div id="home" class="flex-column flex-center">
-            <h1>Quiz Master</h1>
-            <button id="start-btn" class="btn">Start Quiz</button>
-            <button id="highscores-btn" class="btn">High Scores</button>
+            <h1 data-translate="welcome">Quiz Website</h1>
+            <button id="start-btn" class="btn" data-translate="startQuiz">Start Quiz</button>
         </div>
 
-        <div id="category-selection" class="flex-column flex-center hide">
-            <h2>Select a Category</h2>
-            <div class="categories-grid">
-                <button class="btn category-btn" data-category="school">School/College Subjects</button>
-                <button class="btn category-btn" data-category="competitive">Competitive Exams</button>
-                <button class="btn category-btn" data-category="professional">Professional & Technical</button>
-                <button class="btn category-btn" data-category="language">Languages & Regional Studies</button>
-                <button class="btn category-btn" data-category="religious">Religious Education</button>
-                <button class="btn category-btn" data-category="modern">Modern Fields</button>
+        <div id="category-selection" class="quiz-section hide">
+            <h2 data-translate="categories">Select Category</h2>
+            <div class="category-grid">
+                <button class="btn category-btn" data-category="science" data-translate="science">Science</button>
+                <button class="btn category-btn" data-category="mathematics" data-translate="mathematics">Mathematics</button>
+                <button class="btn category-btn" data-category="history" data-translate="history">History</button>
+                <button class="btn category-btn" data-category="language" data-translate="language">Languages</button>
             </div>
         </div>
 
-        <div id="subject-selection" class="flex-column flex-center hide">
-            <h2>Select a Subject</h2>
-            <!-- School/College Subjects -->
-            <div id="school-subjects" class="subjects-grid category-subjects hide">
-                <div class="subject-group">
-                    <h3>Compulsory Subjects</h3>
-                    <button class="btn subject-btn" data-subject="urdu">Urdu</button>
-                    <button class="btn subject-btn" data-subject="english">English</button>
-                    <button class="btn subject-btn" data-subject="mathematics">Mathematics</button>
-                    <button class="btn subject-btn" data-subject="pak_studies">Pakistan Studies</button>
-                    <button class="btn subject-btn" data-subject="islamiat">Islamic Studies</button>
-                    <button class="btn subject-btn" data-subject="science">General Science</button>
-                </div>
-                <div class="subject-group">
-                    <h3>Pre-Medical</h3>
-                    <button class="btn subject-btn" data-subject="biology">Biology</button>
-                    <button class="btn subject-btn" data-subject="chemistry">Chemistry</button>
-                    <button class="btn subject-btn" data-subject="physics">Physics</button>
-                </div>
-                <div class="subject-group">
-                    <h3>Pre-Engineering</h3>
-                    <button class="btn subject-btn" data-subject="math_eng">Mathematics</button>
-                    <button class="btn subject-btn" data-subject="physics_eng">Physics</button>
-                    <button class="btn subject-btn" data-subject="chemistry_eng">Chemistry</button>
-                </div>
-                <div class="subject-group">
-                    <h3>Commerce</h3>
-                    <button class="btn subject-btn" data-subject="accounting">Accounting</button>
-                    <button class="btn subject-btn" data-subject="business">Business Studies</button>
-                    <button class="btn subject-btn" data-subject="economics">Economics</button>
-                </div>
+        <div id="subcategory-selection" class="quiz-section hide">
+            <h2 data-translate="selectSubcategory">Select Subcategory</h2>
+            <div class="subcategory-grid">
+                <!-- Subcategories will be dynamically loaded here -->
             </div>
-
-            <!-- Competitive Exams -->
-            <div id="competitive-subjects" class="subjects-grid category-subjects hide">
-                <div class="subject-group">
-                    <h3>CSS/PMS</h3>
-                    <button class="btn subject-btn" data-subject="css_english">English Essay & Précis</button>
-                    <button class="btn subject-btn" data-subject="pak_affairs">Pakistan Affairs</button>
-                    <button class="btn subject-btn" data-subject="ir">International Relations</button>
-                    <button class="btn subject-btn" data-subject="current_affairs">Current Affairs</button>
-                </div>
-                <div class="subject-group">
-                    <h3>MDCAT</h3>
-                    <button class="btn subject-btn" data-subject="mdcat_bio">Biology</button>
-                    <button class="btn subject-btn" data-subject="mdcat_chem">Chemistry</button>
-                    <button class="btn subject-btn" data-subject="mdcat_phy">Physics</button>
-                </div>
-                <div class="subject-group">
-                    <h3>ECAT</h3>
-                    <button class="btn subject-btn" data-subject="ecat_math">Mathematics</button>
-                    <button class="btn subject-btn" data-subject="ecat_phy">Physics</button>
-                    <button class="btn subject-btn" data-subject="logical">Logical Reasoning</button>
-                </div>
-            </div>
-
-            <!-- Professional & Technical -->
-            <div id="professional-subjects" class="subjects-grid category-subjects hide">
-                <div class="subject-group">
-                    <h3>Engineering</h3>
-                    <button class="btn subject-btn" data-subject="civil">Civil Engineering</button>
-                    <button class="btn subject-btn" data-subject="mechanical">Mechanical Engineering</button>
-                    <button class="btn subject-btn" data-subject="electrical">Electrical Engineering</button>
-                    <button class="btn subject-btn" data-subject="software">Software Engineering</button>
-                </div>
-                <div class="subject-group">
-                    <h3>Medical</h3>
-                    <button class="btn subject-btn" data-subject="mbbs">MBBS</button>
-                    <button class="btn subject-btn" data-subject="dentistry">Dentistry</button>
-                    <button class="btn subject-btn" data-subject="pharmacy">Pharmacy</button>
-                </div>
-                <div class="subject-group">
-                    <h3>Vocational (TEVTA)</h3>
-                    <button class="btn subject-btn" data-subject="electrical_wiring">Electrical Wiring</button>
-                    <button class="btn subject-btn" data-subject="plumbing">Plumbing</button>
-                    <button class="btn subject-btn" data-subject="fashion">Fashion Design</button>
-                </div>
-            </div>
-
-            <!-- Languages & Regional Studies -->
-            <div id="language-subjects" class="subjects-grid category-subjects hide">
-                <button class="btn subject-btn" data-subject="sindhi">Sindhi</button>
-                <button class="btn subject-btn" data-subject="punjabi">Punjabi</button>
-                <button class="btn subject-btn" data-subject="pashto">Pashto</button>
-                <button class="btn subject-btn" data-subject="balochi">Balochi</button>
-                <button class="btn subject-btn" data-subject="urdu_lit">Urdu Literature</button>
-            </div>
-
-            <!-- Religious Education -->
-            <div id="religious-subjects" class="subjects-grid category-subjects hide">
-                <button class="btn subject-btn" data-subject="quran">Quranic Studies</button>
-                <button class="btn subject-btn" data-subject="hadith">Hadith</button>
-                <button class="btn subject-btn" data-subject="fiqh">Fiqh</button>
-                <button class="btn subject-btn" data-subject="arabic">Arabic Language</button>
-            </div>
-
-            <!-- Modern Fields -->
-            <div id="modern-subjects" class="subjects-grid category-subjects hide">
-                <button class="btn subject-btn" data-subject="ai">Artificial Intelligence</button>
-                <button class="btn subject-btn" data-subject="cyber">Cybersecurity</button>
-                <button class="btn subject-btn" data-subject="digital">Digital Marketing</button>
-                <button class="btn subject-btn" data-subject="renewable">Renewable Energy</button>
-            </div>
-
-            <button id="back-to-categories" class="btn">Back to Categories</button>
         </div>
 
-        <div id="quiz" class="hide">
-            <div class="quiz-header">
-                <div class="hud">
-                    <div class="hud-item">
-                        <p class="hud-prefix">Question</p>
-                        <h2 class="hud-main-text" id="questionCounter">1/10</h2>
-                    </div>
-                    <div class="hud-item">
-                        <p class="hud-prefix">Score</p>
-                        <h2 class="hud-main-text" id="score">0</h2>
-                    </div>
-                    <div class="hud-item">
-                        <p class="hud-prefix">Time</p>
-                        <h2 class="hud-main-text" id="timer">60</h2>
-                    </div>
+        <div id="quiz" class="quiz-section hide">
+            <div class="progress-container">
+                <div class="question-counter">
+                    <span id="current-question">1</span>/<span id="total-questions">10</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
                 </div>
             </div>
+
             <div id="question-container">
-                <h2 id="question">Question goes here</h2>
-                <div id="feedback" class="feedback hide"></div>
+                <h2 id="question"></h2>
                 <div id="answer-buttons" class="btn-grid">
-                    <!-- Answer buttons will be inserted here -->
+                    <!-- Answer buttons will be dynamically loaded here -->
                 </div>
             </div>
+
             <div class="controls">
-                <button id="prev-btn" class="btn">Previous</button>
-                <button id="next-btn" class="btn">Next</button>
+                <button id="next-btn" class="btn" data-translate="next">Next</button>
             </div>
         </div>
 
-        <div id="end" class="flex-column flex-center hide">
-            <h1>Quiz Complete!</h1>
-            <h2 id="final-score">Your score: 0</h2>
-            <form class="end-form-container">
-                <h2>Enter your name to save your score:</h2>
-                <input type="text" name="name" id="username" placeholder="Enter your name">
-                <button class="btn" id="save-score-btn" type="submit" disabled>Save Score</button>
-            </form>
-            <button id="play-again" class="btn">Play Again</button>
-            <button id="go-home" class="btn">Go Home</button>
+        <div id="break-screen" class="break-screen">
+            <div class="break-content">
+                <h2 data-translate="greatJob">Great job! Take a short break.</h2>
+                <p id="break-progress"></p>
+                <button id="continue-btn" class="btn" data-translate="continue">Continue</button>
+            </div>
         </div>
 
-        <div id="highscores" class="flex-column flex-center hide">
-            <h1>High Scores</h1>
-            <ul id="highscores-list"></ul>
-            <button id="home-btn" class="btn">Go Home</button>
-        </div>
-        
-        <!-- Add Urdu quiz container -->
-        <div id="urduQuizContainer" style="display: none;">
-            <div class="urdu-text">
-                <h1>پاکستان کوئز پلیٹ فارم</h1>
-                <div class="category-selection">
-                    <h2>کیٹیگری منتخب کریں</h2>
-                    <div class="categories">
-                        <button onclick="loadQuiz('grammar')">اردو گرامر</button>
-                        <button onclick="loadQuiz('literature')">اردو ادب</button>
-                        <button onclick="loadQuiz('islamiat')">اسلامیات</button>
-                        <button onclick="loadQuiz('history')">پاکستانی تاریخ</button>
-                        <button onclick="loadQuiz('science')">سائنس</button>
-                        <button onclick="loadQuiz('current')">موجودہ معاملات</button>
-                    </div>
-                </div>
+        <div id="results" class="quiz-section hide">
+            <h2 data-translate="finalScore">Final Score</h2>
+            <div id="score-details">
+                <p><span data-translate="totalQuestions">Total Questions</span>: <span id="total-answered">0</span></p>
+                <p><span data-translate="score">Score</span>: <span id="final-score">0</span></p>
+                <p><span data-translate="accuracy">Accuracy</span>: <span id="accuracy">0%</span></p>
             </div>
+            <button id="restart-btn" class="btn" data-translate="startNew">Start New Quiz</button>
         </div>
     </div>
-    <script src="questions.js"></script>
-    <script src="script.js"></script>
+
+    <script type="module" src="script.js"></script>
 </body>
 </html>

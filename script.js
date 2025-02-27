@@ -1,140 +1,124 @@
+// Import statements
+import { initializeLanguage, changeLanguage } from './js/language-utils.js';
+import { allQuestions, getQuestions } from './questions.js';
+
 // DOM Elements
 const homeElement = document.getElementById('home');
+const startButton = document.getElementById('start-btn');
 const categorySelectionElement = document.getElementById('category-selection');
-const subjectSelectionElement = document.getElementById('subject-selection');
+const subcategorySelectionElement = document.getElementById('subcategory-selection');
 const quizElement = document.getElementById('quiz');
-const endElement = document.getElementById('end');
-const highscoresElement = document.getElementById('highscores');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
-const prevButton = document.getElementById('prev-btn');
-const startButton = document.getElementById('start-btn');
-const backToCategoriesButton = document.getElementById('back-to-categories');
-const questionCounterElement = document.getElementById('questionCounter');
-const scoreElement = document.getElementById('score');
-const timerElement = document.getElementById('timer');
+const breakScreenElement = document.getElementById('break-screen');
+const breakProgressElement = document.getElementById('break-progress');
+const continueButton = document.getElementById('continue-btn');
+const resultsElement = document.getElementById('results');
+const totalAnsweredElement = document.getElementById('total-answered');
 const finalScoreElement = document.getElementById('final-score');
-const usernameInput = document.getElementById('username');
-const saveScoreButton = document.getElementById('save-score-btn');
-const highscoresButton = document.getElementById('highscores-btn');
-const highscoresList = document.getElementById('highscores-list');
-const playAgainButton = document.getElementById('play-again');
-const goHomeButton = document.getElementById('go-home');
-const homeButton = document.getElementById('home-btn');
-const feedbackElement = document.getElementById('feedback');
+const accuracyElement = document.getElementById('accuracy');
+const restartButton = document.getElementById('restart-btn');
+const progressFillElement = document.querySelector('.progress-fill');
+const currentQuestionElement = document.getElementById('current-question');
+const totalQuestionsElement = document.getElementById('total-questions');
 
-import translations from './translations.js';
-
-// Language handling
-let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
-
-function updatePageLanguage() {
-    document.documentElement.lang = currentLanguage;
-    const elements = document.querySelectorAll('[data-translate]');
-    elements.forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (translations[currentLanguage] && translations[currentLanguage][key]) {
-            element.textContent = translations[currentLanguage][key];
-        }
-    });
-}
-
-// Update language when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    updatePageLanguage();
-});
-
-// Quiz state variables
+// Quiz state
 let currentQuestionIndex = 0;
 let score = 0;
-let timeLeft = 60;
-let timer;
-let answers = [];
-let currentCategory = '';
-let currentSubject = '';
 let questions = [];
+let currentCategory = '';
+let currentSubcategory = '';
+let totalQuestionsAnswered = 0;
+let correctAnswers = 0;
 
-// Event Listeners
-startButton.addEventListener('click', showCategorySelection);
-backToCategoriesButton.addEventListener('click', showCategorySelection);
-
-// Category selection
-document.querySelectorAll('.category-btn').forEach(button => {
-    button.addEventListener('click', () => selectCategory(button.dataset.category));
-});
-
-// Subject selection
-document.querySelectorAll('.subject-btn').forEach(button => {
-    button.addEventListener('click', () => startQuiz(button.dataset.subject));
-});
-
-nextButton.addEventListener('click', () => {
-    currentQuestionIndex++;
-    setNextQuestion();
-});
-prevButton.addEventListener('click', () => {
-    currentQuestionIndex--;
-    setNextQuestion();
-});
-highscoresButton.addEventListener('click', showHighscores);
-usernameInput.addEventListener('input', () => {
-    saveScoreButton.disabled = !usernameInput.value;
-});
-saveScoreButton.addEventListener('click', saveHighScore);
-playAgainButton.addEventListener('click', showCategorySelection);
-goHomeButton.addEventListener('click', goHome);
-homeButton.addEventListener('click', goHome);
-
-function showCategorySelection() {
-    homeElement.classList.add('hide');
-    categorySelectionElement.classList.remove('hide');
-    subjectSelectionElement.classList.add('hide');
-    quizElement.classList.add('hide');
-    endElement.classList.add('hide');
-    highscoresElement.classList.add('hide');
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    initializeLanguage();
+    setupEventListeners();
     
-    // Hide all subject grids
-    document.querySelectorAll('.category-subjects').forEach(grid => {
-        grid.classList.add('hide');
+    // Redirect to language selection if language not set
+    if (!localStorage.getItem('selectedLanguage')) {
+        window.location.href = 'language-select.html';
+    }
+});
+
+function setupEventListeners() {
+    startButton.addEventListener('click', () => {
+        homeElement.classList.add('hide');
+        categorySelectionElement.classList.remove('hide');
     });
+
+    // Category selection
+    document.querySelectorAll('.category-btn').forEach(button => {
+        button.addEventListener('click', () => selectCategory(button.dataset.category));
+    });
+
+    nextButton.addEventListener('click', handleNextQuestion);
+    continueButton.addEventListener('click', continueQuiz);
+    restartButton.addEventListener('click', restartQuiz);
 }
 
 function selectCategory(category) {
     currentCategory = category;
     categorySelectionElement.classList.add('hide');
-    subjectSelectionElement.classList.remove('hide');
     
-    // Hide all subject grids and show the selected category's subjects
-    document.querySelectorAll('.category-subjects').forEach(grid => {
-        grid.classList.add('hide');
+    // Load subcategories based on category
+    const subcategoryGrid = document.querySelector('.subcategory-grid');
+    subcategoryGrid.innerHTML = '';
+    
+    const subcategories = getSubcategories(category);
+    subcategories.forEach(sub => {
+        const button = document.createElement('button');
+        button.className = 'btn subcategory-btn';
+        button.setAttribute('data-translate', sub);
+        button.textContent = translations[getCurrentLanguage()][sub] || sub;
+        button.addEventListener('click', () => startQuiz(sub));
+        subcategoryGrid.appendChild(button);
     });
-    document.getElementById(`${category}-subjects`).classList.remove('hide');
+    
+    subcategorySelectionElement.classList.remove('hide');
 }
 
-function showSubjectSelection() {
-    subjectSelectionElement.classList.remove('hide');
-    quizElement.classList.add('hide');
-    endElement.classList.add('hide');
-    highscoresElement.classList.add('hide');
+function getSubcategories(category) {
+    switch(category) {
+        case 'science':
+            return ['physics', 'chemistry', 'biology'];
+        case 'mathematics':
+            return ['algebra', 'geometry', 'calculus'];
+        case 'history':
+            return ['ancient', 'medieval', 'modern'];
+        case 'language':
+            return ['grammar', 'literature', 'vocabulary'];
+        default:
+            return [];
+    }
 }
 
-function startQuiz(subject) {
-    currentSubject = subject;
-    questions = quizData[currentCategory][subject];
-    subjectSelectionElement.classList.add('hide');
+function startQuiz(subcategory) {
+    currentSubcategory = subcategory;
+    questions = getQuestions(currentCategory, subcategory, 1000); // Get all questions
+    
+    if (!questions || questions.length === 0) {
+        alert('No questions available for this subject. Please try another one.');
+        return;
+    }
+    
+    subcategorySelectionElement.classList.add('hide');
     quizElement.classList.remove('hide');
     currentQuestionIndex = 0;
     score = 0;
-    answers = questions.map(() => null);
-    updateScore();
-    startTimer();
-    setNextQuestion();
+    totalQuestionsAnswered = 0;
+    correctAnswers = 0;
+    
+    showQuestion();
+    updateProgress();
 }
 
-function showQuestion(question) {
-    questionElement.innerText = question.question;
-    feedbackElement.classList.add('hide');
+function showQuestion() {
+    const question = questions[currentQuestionIndex];
+    questionElement.textContent = question.question;
+    
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
@@ -146,130 +130,83 @@ function showQuestion(question) {
         button.addEventListener('click', () => selectAnswer(index));
         answerButtonsElement.appendChild(button);
     });
+    
+    nextButton.disabled = true;
+    updateProgress();
 }
 
 function selectAnswer(answerIndex) {
-    const currentQuestion = questions[currentQuestionIndex];
-    const isCorrect = currentQuestion.answers[answerIndex].correct;
+    const question = questions[currentQuestionIndex];
+    const correct = question.answers[answerIndex].correct;
     
-    // Show feedback
-    feedbackElement.classList.remove('hide', 'correct', 'incorrect');
-    feedbackElement.classList.add(isCorrect ? 'correct' : 'incorrect');
-    feedbackElement.textContent = isCorrect ? 'Correct!' : 'Wrong answer!';
-    
-    // Update score if this is the first attempt
-    if (answers[currentQuestionIndex] === null && isCorrect) {
+    if (correct) {
         score++;
-        updateScore();
+        correctAnswers++;
     }
     
-    answers[currentQuestionIndex] = answerIndex;
+    totalQuestionsAnswered++;
     
-    // Disable all buttons
+    // Highlight correct and wrong answers
     const buttons = answerButtonsElement.children;
-    for (let button of buttons) {
+    Array.from(buttons).forEach((button, index) => {
+        button.classList.add(question.answers[index].correct ? 'correct' : 'wrong');
         button.disabled = true;
-    }
+    });
     
-    // Show correct answer
-    buttons[answerIndex].classList.add(isCorrect ? 'correct' : 'incorrect');
-    if (!isCorrect) {
-        const correctIndex = currentQuestion.answers.findIndex(answer => answer.correct);
-        buttons[correctIndex].classList.add('correct');
-    }
+    nextButton.disabled = false;
+}
+
+function handleNextQuestion() {
+    currentQuestionIndex++;
     
-    // Automatically move to next question after 1.5 seconds
-    setTimeout(() => {
-        if (currentQuestionIndex < questions.length - 1) {
-            currentQuestionIndex++;
-            setNextQuestion();
-        } else {
-            endQuiz();
-        }
-    }, 1500);
-}
-
-function setNextQuestion() {
-    resetState();
-    showQuestion(questions[currentQuestionIndex]);
-    updateNavigationButtons();
-    updateQuestionCounter();
-}
-
-function resetState() {
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+    // Check if we need to show a break screen
+    if (currentQuestionIndex % 10 === 0) {
+        showBreakScreen();
+    } else if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        showResults();
     }
 }
 
-function updateNavigationButtons() {
-    prevButton.style.display = currentQuestionIndex === 0 ? 'none' : 'block';
-    nextButton.style.display = currentQuestionIndex === questions.length - 1 ? 'none' : 'block';
+function showBreakScreen() {
+    const progress = Math.floor((totalQuestionsAnswered / questions.length) * 100);
+    breakProgressElement.textContent = `Progress: ${progress}%`;
+    breakScreenElement.style.display = 'flex';
 }
 
-function updateQuestionCounter() {
-    questionCounterElement.innerText = `${currentQuestionIndex + 1}/${questions.length}`;
+function continueQuiz() {
+    breakScreenElement.style.display = 'none';
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        showResults();
+    }
 }
 
-function updateScore() {
-    scoreElement.innerText = score;
-}
-
-function startTimer() {
-    timeLeft = 60;
-    updateTimer();
-    timer = setInterval(() => {
-        timeLeft--;
-        updateTimer();
-        if (timeLeft <= 0) {
-            endQuiz();
-        }
-    }, 1000);
-}
-
-function updateTimer() {
-    timerElement.innerText = timeLeft;
-}
-
-function endQuiz() {
-    clearInterval(timer);
+function showResults() {
     quizElement.classList.add('hide');
-    endElement.classList.remove('hide');
-    finalScoreElement.innerText = `Your score: ${score}`;
+    resultsElement.classList.remove('hide');
+    
+    totalAnsweredElement.textContent = totalQuestionsAnswered;
+    finalScoreElement.textContent = score;
+    accuracyElement.textContent = `${Math.round((correctAnswers / totalQuestionsAnswered) * 100)}%`;
 }
 
-function saveHighScore(e) {
-    e.preventDefault();
-    
-    const score = {
-        score: this.score,
-        name: usernameInput.value
-    };
-    
-    let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-    highScores.push(score);
-    highScores.sort((a, b) => b.score - a.score);
-    highScores = highScores.slice(0, 5);
-    
-    localStorage.setItem('highScores', JSON.stringify(highScores));
-    showHighscores();
+function updateProgress() {
+    const progress = (currentQuestionIndex / questions.length) * 100;
+    progressFillElement.style.width = `${progress}%`;
+    currentQuestionElement.textContent = currentQuestionIndex + 1;
+    totalQuestionsElement.textContent = questions.length;
 }
 
-function showHighscores() {
-    homeElement.classList.add('hide');
-    quizElement.classList.add('hide');
-    endElement.classList.add('hide');
-    highscoresElement.classList.remove('hide');
-    
-    const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-    highscoresList.innerHTML = highScores
-        .map(score => `<li>${score.name} - ${score.score}</li>`)
-        .join('');
-}
-
-function goHome() {
+function restartQuiz() {
+    resultsElement.classList.add('hide');
     homeElement.classList.remove('hide');
-    quizElement.classList.add('hide');
-    endElement.classList.add('hide');
-    highscoresElement.classList.add('hide');
+    currentQuestionIndex = 0;
+    score = 0;
+    questions = [];
 }
+
+// Make changeLanguage available globally
+window.changeLanguage = changeLanguage;
