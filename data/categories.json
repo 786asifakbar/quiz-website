@@ -1,0 +1,100 @@
+{
+    "categories": [
+        {
+            "id": "history",
+            "name": "History",
+            "icon": "fas fa-history",
+            "description": "Test your knowledge about Pakistan's rich history",
+            "subcategories": [
+                "Ancient History",
+                "Independence Movement",
+                "Post-Independence",
+                "Modern Era"
+            ]
+        },
+        {
+            "id": "geography",
+            "name": "Geography",
+            "icon": "fas fa-mountain",
+            "description": "Explore Pakistan's diverse geographical features",
+            "subcategories": [
+                "Physical Geography",
+                "Climate",
+                "Natural Resources",
+                "Demographics"
+            ]
+        },
+        {
+            "id": "culture",
+            "name": "Culture",
+            "icon": "fas fa-theater-masks",
+            "description": "Learn about Pakistan's cultural heritage",
+            "subcategories": [
+                "Languages",
+                "Traditions",
+                "Arts & Crafts",
+                "Festivals"
+            ]
+        },
+        {
+            "id": "sports",
+            "name": "Sports",
+            "icon": "fas fa-football-ball",
+            "description": "Test your knowledge of Pakistani sports",
+            "subcategories": [
+                "Cricket",
+                "Hockey",
+                "Other Sports",
+                "Sports History"
+            ]
+        },
+        {
+            "id": "economy",
+            "name": "Economy",
+            "icon": "fas fa-chart-line",
+            "description": "Understanding Pakistan's economic landscape",
+            "subcategories": [
+                "Economic History",
+                "Industries",
+                "Trade",
+                "Development"
+            ]
+        },
+        {
+            "id": "science",
+            "name": "Science & Technology",
+            "icon": "fas fa-atom",
+            "description": "Discover Pakistan's achievements in science",
+            "subcategories": [
+                "Scientific Achievements",
+                "Technology",
+                "Research",
+                "Innovation"
+            ]
+        },
+        {
+            "id": "literature",
+            "name": "Literature",
+            "icon": "fas fa-book",
+            "description": "Explore Pakistan's literary heritage",
+            "subcategories": [
+                "Poetry",
+                "Prose",
+                "Authors",
+                "Literary Movements"
+            ]
+        },
+        {
+            "id": "current-affairs",
+            "name": "Current Affairs",
+            "icon": "fas fa-newspaper",
+            "description": "Stay updated with Pakistan's current events",
+            "subcategories": [
+                "Politics",
+                "International Relations",
+                "Social Issues",
+                "Development Projects"
+            ]
+        }
+    ]
+}
