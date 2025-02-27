@@ -1,0 +1,40 @@
+{
+  "questions": [
+    {
+      "question": "Newton's First Law of Motion states:",
+      "answers": {
+        "a": "Force equals mass times acceleration",
+        "b": "An object remains at rest or in motion unless acted upon by a force",
+        "c": "For every action there is an equal and opposite reaction",
+        "d": "Energy cannot be created or destroyed"
+      },
+      "correctAnswer": "b",
+      "feedback": "Newton's First Law describes inertia - objects maintain their state of motion unless acted upon by a force.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Consider the following: Newton's First Law of Motion states:",
+      "answers": {
+        "a": "Force equals mass times acceleration",
+        "b": "An object remains at rest or in motion unless acted upon by a force",
+        "c": "For every action there is an equal and opposite reaction",
+        "d": "Energy cannot be created or destroyed"
+      },
+      "correctAnswer": "b",
+      "feedback": "Newton's First Law describes inertia - objects maintain their state of motion unless acted upon by a force.",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Analyze and explain: Newton's First Law of Motion states:",
+      "answers": {
+        "a": "Force equals mass times acceleration",
+        "b": "An object remains at rest or in motion unless acted upon by a force",
+        "c": "For every action there is an equal and opposite reaction",
+        "d": "Energy cannot be created or destroyed"
+      },
+      "correctAnswer": "b",
+      "feedback": "Newton's First Law describes inertia - objects maintain their state of motion unless acted upon by a force.",
+      "difficulty": "hard"
+    }
+  ]
+}

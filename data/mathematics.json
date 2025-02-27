@@ -1,0 +1,40 @@
+{
+  "questions": [
+    {
+      "question": "Solve for x: 2x + 5 = 13",
+      "answers": {
+        "a": "x = 4",
+        "b": "x = 5",
+        "c": "x = 6",
+        "d": "x = 7"
+      },
+      "correctAnswer": "a",
+      "feedback": "Subtract 5 from both sides: 2x = 8, then divide by 2: x = 4",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Consider the following: Solve for x: 2x + 5 = 13",
+      "answers": {
+        "a": "x = 4",
+        "b": "x = 5",
+        "c": "x = 6",
+        "d": "x = 7"
+      },
+      "correctAnswer": "a",
+      "feedback": "Subtract 5 from both sides: 2x = 8, then divide by 2: x = 4",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Analyze and explain: Solve for x: 2x + 5 = 13",
+      "answers": {
+        "a": "x = 4",
+        "b": "x = 5",
+        "c": "x = 6",
+        "d": "x = 7"
+      },
+      "correctAnswer": "a",
+      "feedback": "Subtract 5 from both sides: 2x = 8, then divide by 2: x = 4",
+      "difficulty": "hard"
+    }
+  ]
+}

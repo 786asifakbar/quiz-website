@@ -1,0 +1,40 @@
+{
+  "questions": [
+    {
+      "question": "What is the powerhouse of the cell?",
+      "answers": {
+        "a": "Nucleus",
+        "b": "Mitochondria",
+        "c": "Golgi apparatus",
+        "d": "Endoplasmic reticulum"
+      },
+      "correctAnswer": "b",
+      "feedback": "Mitochondria are called the powerhouse of the cell because they produce energy through cellular respiration.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Consider the following: What is the powerhouse of the cell?",
+      "answers": {
+        "a": "Nucleus",
+        "b": "Mitochondria",
+        "c": "Golgi apparatus",
+        "d": "Endoplasmic reticulum"
+      },
+      "correctAnswer": "b",
+      "feedback": "Mitochondria are called the powerhouse of the cell because they produce energy through cellular respiration.",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Analyze and explain: What is the powerhouse of the cell?",
+      "answers": {
+        "a": "Nucleus",
+        "b": "Mitochondria",
+        "c": "Golgi apparatus",
+        "d": "Endoplasmic reticulum"
+      },
+      "correctAnswer": "b",
+      "feedback": "Mitochondria are called the powerhouse of the cell because they produce energy through cellular respiration.",
+      "difficulty": "hard"
+    }
+  ]
+}
