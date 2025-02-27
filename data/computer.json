@@ -1,0 +1,49 @@
+{
+    "questions": [
+        {
+            "id": "cs1",
+            "category": "Computer",
+            "subcategory": "Programming",
+            "difficulty": "easy",
+            "question": "Which programming language is known as the 'mother of all programming languages'?",
+            "answers": {
+                "a": "FORTRAN",
+                "b": "COBOL",
+                "c": "Assembly",
+                "d": "C"
+            },
+            "correctAnswer": "c",
+            "feedback": "Assembly language is considered the 'mother of all programming languages' as it's the lowest-level programming language that is still readable by humans."
+        },
+        {
+            "id": "cs2",
+            "category": "Computer",
+            "subcategory": "Hardware",
+            "difficulty": "easy",
+            "question": "What is the brain of the computer called?",
+            "answers": {
+                "a": "RAM",
+                "b": "CPU",
+                "c": "GPU",
+                "d": "Motherboard"
+            },
+            "correctAnswer": "b",
+            "feedback": "The CPU (Central Processing Unit) is considered the brain of the computer as it processes all instructions."
+        },
+        {
+            "id": "cs3",
+            "category": "Computer",
+            "subcategory": "Software",
+            "difficulty": "medium",
+            "question": "Which type of software provides a platform for other software to run?",
+            "answers": {
+                "a": "Application Software",
+                "b": "Operating System",
+                "c": "Utility Software",
+                "d": "Driver Software"
+            },
+            "correctAnswer": "b",
+            "feedback": "An Operating System provides a platform and interface for other software to run on a computer."
+        }
+    ]
+}

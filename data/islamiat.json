@@ -1,0 +1,49 @@
+{
+    "questions": [
+        {
+            "id": "isl1",
+            "category": "Islamiat",
+            "subcategory": "Quran",
+            "difficulty": "easy",
+            "question": "قرآن مجید کی پہلی سورت کون سی ہے؟",
+            "answers": {
+                "a": "سورۃ الفاتحہ",
+                "b": "سورۃ البقرہ",
+                "c": "سورۃ الاخلاص",
+                "d": "سورۃ الناس"
+            },
+            "correctAnswer": "a",
+            "feedback": "قرآن مجید کی پہلی سورت سورۃ الفاتحہ ہے جسے ام الکتاب بھی کہا جاتا ہے۔"
+        },
+        {
+            "id": "isl2",
+            "category": "Islamiat",
+            "subcategory": "Hadith",
+            "difficulty": "medium",
+            "question": "صحاح ستہ میں سب سے زیادہ صحیح احادیث کی کتاب کون سی ہے؟",
+            "answers": {
+                "a": "صحیح بخاری",
+                "b": "صحیح مسلم",
+                "c": "سنن ابو داؤد",
+                "d": "جامع ترمذی"
+            },
+            "correctAnswer": "a",
+            "feedback": "صحیح بخاری کو صحاح ستہ میں سب سے زیادہ صحیح احادیث کی کتاب مانا جاتا ہے۔"
+        },
+        {
+            "id": "isl3",
+            "category": "Islamiat",
+            "subcategory": "Fiqh",
+            "difficulty": "hard",
+            "question": "نماز کے کتنے فرائض ہیں؟",
+            "answers": {
+                "a": "4",
+                "b": "5",
+                "c": "6",
+                "d": "7"
+            },
+            "correctAnswer": "c",
+            "feedback": "نماز کے 6 فرائض ہیں: تکبیر تحریمہ، قیام، قرات، رکوع، سجود، اور قعدہ اخیرہ۔"
+        }
+    ]
+}

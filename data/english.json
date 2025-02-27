@@ -1,0 +1,49 @@
+{
+    "questions": [
+        {
+            "id": "eng1",
+            "category": "English",
+            "subcategory": "Grammar",
+            "difficulty": "easy",
+            "question": "Which of these is a proper noun?",
+            "answers": {
+                "a": "book",
+                "b": "Pakistan",
+                "c": "happiness",
+                "d": "beautiful"
+            },
+            "correctAnswer": "b",
+            "feedback": "Pakistan is a proper noun as it names a specific country."
+        },
+        {
+            "id": "eng2",
+            "category": "English",
+            "subcategory": "Vocabulary",
+            "difficulty": "medium",
+            "question": "What is the antonym of 'benevolent'?",
+            "answers": {
+                "a": "malevolent",
+                "b": "generous",
+                "c": "kind",
+                "d": "helpful"
+            },
+            "correctAnswer": "a",
+            "feedback": "Malevolent means having or showing a wish to do evil to others, which is the opposite of benevolent."
+        },
+        {
+            "id": "eng3",
+            "category": "English",
+            "subcategory": "Literature",
+            "difficulty": "hard",
+            "question": "Who wrote 'Pride and Prejudice'?",
+            "answers": {
+                "a": "Emily Bronte",
+                "b": "Charlotte Bronte",
+                "c": "Jane Austen",
+                "d": "Virginia Woolf"
+            },
+            "correctAnswer": "c",
+            "feedback": "Pride and Prejudice was written by Jane Austen and published in 1813."
+        }
+    ]
+}

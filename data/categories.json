@@ -1,100 +1,64 @@
 {
     "categories": [
         {
-            "id": "history",
-            "name": "History",
-            "icon": "fas fa-history",
-            "description": "Test your knowledge about Pakistan's rich history",
-            "subcategories": [
-                "Ancient History",
-                "Independence Movement",
-                "Post-Independence",
-                "Modern Era"
-            ]
+            "id": "all",
+            "name": "All Categories",
+            "icon": "fas fa-globe",
+            "description": "Questions from all categories"
         },
         {
-            "id": "geography",
-            "name": "Geography",
-            "icon": "fas fa-mountain",
-            "description": "Explore Pakistan's diverse geographical features",
-            "subcategories": [
-                "Physical Geography",
-                "Climate",
-                "Natural Resources",
-                "Demographics"
-            ]
+            "id": "urdu",
+            "name": "Urdu",
+            "icon": "fas fa-language",
+            "description": "Urdu grammar, literature, and poetry"
         },
         {
-            "id": "culture",
-            "name": "Culture",
-            "icon": "fas fa-theater-masks",
-            "description": "Learn about Pakistan's cultural heritage",
-            "subcategories": [
-                "Languages",
-                "Traditions",
-                "Arts & Crafts",
-                "Festivals"
-            ]
+            "id": "islamiat",
+            "name": "Islamiat",
+            "icon": "fas fa-mosque",
+            "description": "Islamic studies and religious knowledge"
         },
         {
-            "id": "sports",
-            "name": "Sports",
-            "icon": "fas fa-football-ball",
-            "description": "Test your knowledge of Pakistani sports",
-            "subcategories": [
-                "Cricket",
-                "Hockey",
-                "Other Sports",
-                "Sports History"
-            ]
+            "id": "pakistan_studies",
+            "name": "Pakistan Studies",
+            "icon": "fas fa-flag",
+            "description": "History, geography, and culture of Pakistan"
         },
         {
-            "id": "economy",
-            "name": "Economy",
-            "icon": "fas fa-chart-line",
-            "description": "Understanding Pakistan's economic landscape",
-            "subcategories": [
-                "Economic History",
-                "Industries",
-                "Trade",
-                "Development"
-            ]
-        },
-        {
-            "id": "science",
-            "name": "Science & Technology",
+            "id": "physics",
+            "name": "Physics",
             "icon": "fas fa-atom",
-            "description": "Discover Pakistan's achievements in science",
-            "subcategories": [
-                "Scientific Achievements",
-                "Technology",
-                "Research",
-                "Innovation"
-            ]
+            "description": "Concepts of physics and numerical problems"
         },
         {
-            "id": "literature",
-            "name": "Literature",
+            "id": "chemistry",
+            "name": "Chemistry",
+            "icon": "fas fa-flask",
+            "description": "Chemical reactions, compounds, and lab work"
+        },
+        {
+            "id": "biology",
+            "name": "Biology",
+            "icon": "fas fa-dna",
+            "description": "Living organisms, human body, and ecosystems"
+        },
+        {
+            "id": "mathematics",
+            "name": "Mathematics",
+            "icon": "fas fa-square-root-alt",
+            "description": "Algebra, geometry, and advanced mathematics"
+        },
+        {
+            "id": "computer",
+            "name": "Computer Science",
+            "icon": "fas fa-laptop-code",
+            "description": "Programming, hardware, and software concepts"
+        },
+        {
+            "id": "english",
+            "name": "English",
             "icon": "fas fa-book",
-            "description": "Explore Pakistan's literary heritage",
-            "subcategories": [
-                "Poetry",
-                "Prose",
-                "Authors",
-                "Literary Movements"
-            ]
-        },
-        {
-            "id": "current-affairs",
-            "name": "Current Affairs",
-            "icon": "fas fa-newspaper",
-            "description": "Stay updated with Pakistan's current events",
-            "subcategories": [
-                "Politics",
-                "International Relations",
-                "Social Issues",
-                "Development Projects"
-            ]
+            "description": "English grammar, literature, and comprehension"
         }
     ]
 }

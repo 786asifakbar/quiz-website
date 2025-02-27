@@ -1,0 +1,49 @@
+{
+    "questions": [
+        {
+            "id": "urdu1",
+            "category": "Urdu",
+            "subcategory": "Grammar",
+            "difficulty": "easy",
+            "question": "اسمِ ضمیر کی کتنی اقسام ہیں؟",
+            "answers": {
+                "a": "3",
+                "b": "4",
+                "c": "5",
+                "d": "6"
+            },
+            "correctAnswer": "c",
+            "feedback": "اسمِ ضمیر کی 5 اقسام ہیں: ضمیر متکلم، ضمیر حاضر، ضمیر غائب، ضمیر اشارہ، اور ضمیر موصول۔"
+        },
+        {
+            "id": "urdu2",
+            "category": "Urdu",
+            "subcategory": "Literature",
+            "difficulty": "medium",
+            "question": "'بانگِ درا' کس شاعر کا مجموعہ کلام ہے؟",
+            "answers": {
+                "a": "علامہ اقبال",
+                "b": "فیض احمد فیض",
+                "c": "میر تقی میر",
+                "d": "غالب"
+            },
+            "correctAnswer": "a",
+            "feedback": "'بانگِ درا' علامہ محمد اقبال کا پہلا اردو مجموعہ کلام ہے جو 1924 میں شائع ہوا۔"
+        },
+        {
+            "id": "urdu3",
+            "category": "Urdu",
+            "subcategory": "Poetry",
+            "difficulty": "hard",
+            "question": "غزل کے ہر شعر کے آخری دو لفظ کیا کہلاتے ہیں؟",
+            "answers": {
+                "a": "مطلع",
+                "b": "مقطع",
+                "c": "ردیف",
+                "d": "قافیہ"
+            },
+            "correctAnswer": "c",
+            "feedback": "غزل کے ہر شعر کے آخری دو لفظ ردیف کہلاتے ہیں۔"
+        }
+    ]
+}
