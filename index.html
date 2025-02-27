@@ -1,145 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Website</title>
+    <title>Pakistan Quiz</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Add multilingual font support -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Sindhi:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* RTL language support */
-        [lang="ur"], [lang="sd"] {
-            direction: rtl;
-        }
-        
-        [lang="ur"] {
-            font-family: 'Noto Nastaliq Urdu', serif;
-        }
-        
-        [lang="sd"] {
-            font-family: 'Noto Sans Sindhi', serif;
-        }
-
-        .progress-container {
-            width: 100%;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background-color: #f0f0f0;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background-color: #4CAF50;
-            transition: width 0.3s ease;
-        }
-
-        .break-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .break-content {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .quiz-section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .question-counter {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 1.2rem;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <div id="home" class="flex-column flex-center">
-            <h1 data-translate="welcome">Quiz Website</h1>
-            <button id="start-btn" class="btn" data-translate="startQuiz">Start Quiz</button>
-        </div>
-
-        <div id="category-selection" class="quiz-section hide">
-            <h2 data-translate="categories">Select Category</h2>
-            <div class="category-grid">
-                <button class="btn category-btn" data-category="science" data-translate="science">Science</button>
-                <button class="btn category-btn" data-category="mathematics" data-translate="mathematics">Mathematics</button>
-                <button class="btn category-btn" data-category="history" data-translate="history">History</button>
-                <button class="btn category-btn" data-category="language" data-translate="language">Languages</button>
-            </div>
-        </div>
-
-        <div id="subcategory-selection" class="quiz-section hide">
-            <h2 data-translate="selectSubcategory">Select Subcategory</h2>
-            <div class="subcategory-grid">
-                <!-- Subcategories will be dynamically loaded here -->
-            </div>
-        </div>
-
-        <div id="quiz" class="quiz-section hide">
-            <div class="progress-container">
-                <div class="question-counter">
-                    <span id="current-question">1</span>/<span id="total-questions">10</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0%"></div>
-                </div>
-            </div>
-
-            <div id="question-container">
-                <h2 id="question"></h2>
-                <div id="answer-buttons" class="btn-grid">
-                    <!-- Answer buttons will be dynamically loaded here -->
-                </div>
-            </div>
-
-            <div class="controls">
-                <button id="next-btn" class="btn" data-translate="next">Next</button>
-            </div>
-        </div>
-
-        <div id="break-screen" class="break-screen">
-            <div class="break-content">
-                <h2 data-translate="greatJob">Great job! Take a short break.</h2>
-                <p id="break-progress"></p>
-                <button id="continue-btn" class="btn" data-translate="continue">Continue</button>
-            </div>
-        </div>
-
-        <div id="results" class="quiz-section hide">
-            <h2 data-translate="finalScore">Final Score</h2>
-            <div id="score-details">
-                <p><span data-translate="totalQuestions">Total Questions</span>: <span id="total-answered">0</span></p>
-                <p><span data-translate="score">Score</span>: <span id="final-score">0</span></p>
-                <p><span data-translate="accuracy">Accuracy</span>: <span id="accuracy">0%</span></p>
-            </div>
-            <button id="restart-btn" class="btn" data-translate="startNew">Start New Quiz</button>
-        </div>
+    <div class="quiz-container">
+        <h1>Pakistan Quiz</h1>
+        <div id="quiz"></div>
+        <button id="submit">Submit Quiz</button>
+        <div id="results" class="hide"></div>
     </div>
-
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

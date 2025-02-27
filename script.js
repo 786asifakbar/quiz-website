@@ -1,368 +1,146 @@
-// Updated subject categories structure
-const subjectCategories = {
-    languages: {
-        name: 'Languages',
-        icon: '',
-        subcategories: {
-            english: {
-                name: 'English',
-                subjects: ['Grammar', 'Literature']
-            },
-            urdu: {
-                name: 'Urdu',
-                subjects: ['Grammar', 'Literature']
-            },
-            sindhi: {
-                name: 'Sindhi',
-                subjects: ['Grammar', 'Literature']
-            },
-            regionalLanguages: {
-                name: 'Regional Languages',
-                subjects: ['Pashto', 'Punjabi', 'Balochi']
-            }
+const quizQuestions = [
+    {
+        question: "What is the capital of Pakistan?",
+        answers: {
+            a: "Lahore",
+            b: "Islamabad",
+            c: "Karachi"
+        },
+        correctAnswer: "b",
+        feedback: "Islamabad has been the capital of Pakistan since 1967."
+    },
+    {
+        question: "Which mountain is the highest in Pakistan?",
+        answers: {
+            a: "Nanga Parbat",
+            b: "K2",
+            c: "Tirich Mir"
+        },
+        correctAnswer: "b",
+        feedback: "K2, at 8,611 meters, is the second-highest mountain in the world and the highest in Pakistan."
+    },
+    {
+        question: "Who is known as the founder of Pakistan?",
+        answers: {
+            a: "Quaid-e-Azam Muhammad Ali Jinnah",
+            b: "Allama Iqbal",
+            c: "Liaquat Ali Khan"
+        },
+        correctAnswer: "a",
+        feedback: "Quaid-e-Azam Muhammad Ali Jinnah is known as the founder of Pakistan and served as its first Governor-General."
+    },
+    {
+        question: "What is the national language of Pakistan?",
+        answers: {
+            a: "English",
+            b: "Urdu",
+            c: "Punjabi"
+        },
+        correctAnswer: "b",
+        feedback: "Urdu is the national language of Pakistan, though English is also an official language."
+    },
+    {
+        question: "What is the largest province of Pakistan by area?",
+        answers: {
+            a: "Balochistan",
+            b: "Punjab",
+            c: "Sindh"
+        },
+        correctAnswer: "a",
+        feedback: "Balochistan is Pakistan's largest province by area, covering approximately 44% of the country's total land area."
+    },
+    {
+        question: "What is Pakistan's national sport?",
+        answers: {
+            a: "Cricket",
+            b: "Hockey",
+            c: "Football"
+        },
+        correctAnswer: "b",
+        feedback: "Field Hockey is Pakistan's national sport, though cricket is more popular among the masses."
+    },
+    {
+        question: "Which river is the longest in Pakistan?",
+        answers: {
+            a: "Indus River",
+            b: "Chenab River",
+            c: "Jhelum River"
+        },
+        correctAnswer: "a",
+        feedback: "The Indus River is Pakistan's longest and most important river system."
+    },
+    {
+        question: "What is Pakistan's major export?",
+        answers: {
+            a: "Textiles",
+            b: "Petroleum",
+            c: "Electronics"
+        },
+        correctAnswer: "a",
+        feedback: "Textiles and clothing are Pakistan's largest export sector."
+    }
+];
+
+function buildQuiz() {
+    const output = [];
+
+    quizQuestions.forEach((questionData, index) => {
+        const answers = [];
+
+        for (const letter in questionData.answers) {
+            answers.push(
+                `<label class="answer-option">
+                    <input type="radio" name="question${index}" value="${letter}">
+                    ${letter}: ${questionData.answers[letter]}
+                </label>`
+            );
         }
-    },
 
-    mathematicsAndLogic: {
-        name: 'Mathematics & Logic',
-        icon: '',
-        subjects: ['Mathematics', 'Statistics', 'Applied Mathematics']
-    },
-
-    sciences: {
-        name: 'Sciences',
-        icon: '',
-        subcategories: {
-            naturalSciences: {
-                name: 'Natural Sciences',
-                subjects: ['Physics', 'Chemistry', 'Biology']
-            },
-            earthAndEnvironmentalSciences: {
-                name: 'Earth & Environmental Sciences',
-                subjects: ['Geography', 'Environmental Science']
-            },
-            generalScience: {
-                name: 'General Science',
-                subjects: ['General Science']
-            }
-        }
-    },
-
-    socialSciences: {
-        name: 'Social Sciences',
-        icon: '',
-        subjects: ['History', 'Pakistan Studies', 'Sociology', 'Psychology', 'Political Science', 'Economics', 'Civics']
-    },
-
-    religiousStudies: {
-        name: 'Religious Studies',
-        icon: '',
-        subjects: ['Islamiyat', 'Ethics', 'Quranic Studies']
-    },
-
-    computerScienceAndIT: {
-        name: 'Computer Science & Information Technology',
-        icon: '',
-        subjects: ['Computer Science', 'Information Technology', 'Artificial Intelligence', 'Data Science', 'Programming Languages']
-    },
-
-    businessAndCommerce: {
-        name: 'Business & Commerce',
-        icon: '',
-        subjects: ['Principles of Accounting', 'Business Studies', 'Economics', 'Finance', 'Marketing', 'Commerce']
-    },
-
-    artsAndHumanities: {
-        name: 'Arts & Humanities',
-        icon: '',
-        subjects: ['Literature', 'Fine Arts', 'Drawing', 'Music', 'Philosophy', 'Cultural Studies']
-    },
-
-    engineeringAndTechnology: {
-        name: 'Engineering & Technology',
-        icon: '',
-        subjects: ['Civil Engineering', 'Electrical Engineering', 'Mechanical Engineering', 'Software Engineering', 'Chemical Engineering', 'Biomedical Engineering']
-    },
-
-    medicalAndHealthSciences: {
-        name: 'Medical & Health Sciences',
-        icon: '',
-        subjects: ['Medicine', 'Dentistry', 'Pharmacy', 'Nursing', 'Public Health', 'Biochemistry']
-    },
-
-    agricultureAndEnvironmentalSciences: {
-        name: 'Agriculture & Environmental Sciences',
-        icon: '',
-        subjects: ['Agriculture', 'Horticulture', 'Environmental Science', 'Botany', 'Zoology']
-    },
-
-    law: {
-        name: 'Law',
-        icon: '',
-        subjects: ['Law', 'Constitutional Law', 'Criminal Law', 'International Law']
-    },
-
-    education: {
-        name: 'Education',
-        icon: '',
-        subjects: ['Education', 'Teaching Methods', 'Educational Psychology']
-    },
-
-    physicalEducationAndSports: {
-        name: 'Physical Education & Sports',
-        icon: '',
-        subjects: ['Physical Education', 'Sports Science']
-    },
-
-    vocationalAndTechnicalSubjects: {
-        name: 'Vocational & Technical Subjects',
-        icon: '',
-        subjects: ['Home Economics', 'Technical Drawing', 'Woodworking', 'Electrical Wiring', 'Carpentry']
-    },
-
-    miscellaneous: {
-        name: 'Miscellaneous',
-        icon: '',
-        subjects: ['Library Science', 'Media Studies', 'Journalism', 'Gender Studies']
-    }
-};
-
-// DOM Elements
-const homeElement = document.getElementById('home');
-const startButton = document.getElementById('start-btn');
-const categorySelectionElement = document.getElementById('category-selection');
-const subcategorySelectionElement = document.getElementById('subcategory-selection');
-const subjectSelectionElement = document.getElementById('subject-selection');
-const topicSelectionElement = document.getElementById('topic-selection');
-const quizElement = document.getElementById('quiz');
-const questionElement = document.getElementById('question');
-const answerButtonsElement = document.getElementById('answer-buttons');
-const nextButton = document.getElementById('next-btn');
-const breakScreenElement = document.getElementById('break-screen');
-const breakProgressElement = document.getElementById('break-progress');
-const continueButton = document.getElementById('continue-btn');
-const resultsElement = document.getElementById('results');
-const totalAnsweredElement = document.getElementById('total-answered');
-const finalScoreElement = document.getElementById('final-score');
-const accuracyElement = document.getElementById('accuracy');
-const restartButton = document.getElementById('restart-btn');
-const progressFillElement = document.querySelector('.progress-fill');
-const currentQuestionElement = document.getElementById('current-question');
-const totalQuestionsElement = document.getElementById('total-questions');
-
-// Quiz state
-let currentQuestionIndex = 0;
-let score = 0;
-let questions = [];
-let currentCategory = '';
-let currentSubcategory = '';
-let currentSubject = '';
-let currentTopic = '';
-let totalQuestionsAnswered = 0;
-let correctAnswers = 0;
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    initializeLanguage();
-    setupEventListeners();
-    setupCategories();
-    
-    // Redirect to language selection if language not set
-    if (!localStorage.getItem('selectedLanguage')) {
-        window.location.href = 'language-select.html';
-    }
-});
-
-function setupEventListeners() {
-    startButton.addEventListener('click', () => {
-        homeElement.classList.add('hide');
-        categorySelectionElement.classList.remove('hide');
+        output.push(
+            `<div class="question">
+                <div class="question-title">${index + 1}. ${questionData.question}</div>
+                <div class="answers">${answers.join('')}</div>
+            </div>`
+        );
     });
 
-    nextButton.addEventListener('click', handleNextQuestion);
-    continueButton.addEventListener('click', continueQuiz);
-    restartButton.addEventListener('click', restartQuiz);
-}
-
-function setupCategories() {
-    const categoryGrid = document.querySelector('.category-grid');
-    categoryGrid.innerHTML = '';
-
-    Object.entries(subjectCategories).forEach(([key, category]) => {
-        const button = document.createElement('button');
-        button.className = 'btn category-btn';
-        button.setAttribute('data-category', key);
-        button.innerHTML = `${category.icon} <span>${category.name}</span>`;
-        button.addEventListener('click', () => selectCategory(key));
-        categoryGrid.appendChild(button);
-    });
-}
-
-function selectCategory(categoryKey) {
-    currentCategory = categoryKey;
-    const category = subjectCategories[categoryKey];
-    
-    if (category.subcategories) {
-        const subcategoryGrid = document.querySelector('.subcategory-grid');
-        subcategoryGrid.innerHTML = '';
-        
-        Object.entries(category.subcategories).forEach(([key, subcategory]) => {
-            const button = document.createElement('button');
-            button.className = 'btn subcategory-btn';
-            button.textContent = subcategory.name;
-            button.addEventListener('click', () => selectSubcategory(key));
-            subcategoryGrid.appendChild(button);
-        });
-        
-        categorySelectionElement.classList.add('hide');
-        subcategorySelectionElement.classList.remove('hide');
-    } else {
-        const subjectGrid = document.querySelector('.subject-grid');
-        subjectGrid.innerHTML = '';
-        
-        category.subjects.forEach(subject => {
-            const button = document.createElement('button');
-            button.className = 'btn subject-btn';
-            button.textContent = subject;
-            button.addEventListener('click', () => startQuiz(subject));
-            subjectGrid.appendChild(button);
-        });
-        
-        categorySelectionElement.classList.add('hide');
-        subjectSelectionElement.classList.remove('hide');
-    }
-}
-
-function selectSubcategory(subcategoryKey) {
-    currentSubcategory = subcategoryKey;
-    const subcategory = subjectCategories[currentCategory].subcategories[subcategoryKey];
-    
-    const subjectGrid = document.querySelector('.subject-grid');
-    subjectGrid.innerHTML = '';
-    
-    subcategory.subjects.forEach(subject => {
-        const button = document.createElement('button');
-        button.className = 'btn subject-btn';
-        button.textContent = subject;
-        button.addEventListener('click', () => startQuiz(subject));
-        subjectGrid.appendChild(button);
-    });
-    
-    subcategorySelectionElement.classList.add('hide');
-    subjectSelectionElement.classList.remove('hide');
-}
-
-function startQuiz(topic) {
-    currentTopic = topic;
-    questions = getQuestions(currentCategory, currentSubcategory, currentSubject, currentTopic);
-    
-    if (!questions || questions.length === 0) {
-        alert('No questions available for this topic. Please try another one.');
-        return;
-    }
-    
-    subjectSelectionElement.classList.add('hide');
-    quizElement.classList.remove('hide');
-    currentQuestionIndex = 0;
-    score = 0;
-    totalQuestionsAnswered = 0;
-    correctAnswers = 0;
-    
-    showQuestion();
-    updateProgress();
-}
-
-// Rest of the quiz functionality remains the same
-function showQuestion() {
-    const question = questions[currentQuestionIndex];
-    questionElement.textContent = question.question;
-    
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-    }
-    
-    question.answers.forEach((answer, index) => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('btn');
-        button.addEventListener('click', () => selectAnswer(index));
-        answerButtonsElement.appendChild(button);
-    });
-    
-    nextButton.disabled = true;
-    updateProgress();
-}
-
-function selectAnswer(answerIndex) {
-    const question = questions[currentQuestionIndex];
-    const correct = question.answers[answerIndex].correct;
-    
-    if (correct) {
-        score++;
-        correctAnswers++;
-    }
-    
-    totalQuestionsAnswered++;
-    
-    const buttons = answerButtonsElement.children;
-    Array.from(buttons).forEach((button, index) => {
-        button.classList.add(question.answers[index].correct ? 'correct' : 'wrong');
-        button.disabled = true;
-    });
-    
-    nextButton.disabled = false;
-}
-
-function handleNextQuestion() {
-    currentQuestionIndex++;
-    
-    if (currentQuestionIndex % 10 === 0) {
-        showBreakScreen();
-    } else if (currentQuestionIndex < questions.length) {
-        showQuestion();
-    } else {
-        showResults();
-    }
-}
-
-function showBreakScreen() {
-    const progress = Math.floor((totalQuestionsAnswered / questions.length) * 100);
-    breakProgressElement.textContent = `Progress: ${progress}%`;
-    breakScreenElement.style.display = 'flex';
-}
-
-function continueQuiz() {
-    breakScreenElement.style.display = 'none';
-    if (currentQuestionIndex < questions.length) {
-        showQuestion();
-    } else {
-        showResults();
-    }
+    document.getElementById('quiz').innerHTML = output.join('');
 }
 
 function showResults() {
-    quizElement.classList.add('hide');
-    resultsElement.classList.remove('hide');
-    
-    totalAnsweredElement.textContent = totalQuestionsAnswered;
-    finalScoreElement.textContent = score;
-    accuracyElement.textContent = `${Math.round((correctAnswers / totalQuestionsAnswered) * 100)}%`;
+    const answerContainers = document.querySelectorAll('.answers');
+    const questions = document.querySelectorAll('.question');
+    let score = 0;
+
+    quizQuestions.forEach((questionData, index) => {
+        const answerContainer = answerContainers[index];
+        const question = questions[index];
+        const selector = `input[name=question${index}]:checked`;
+        const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+        if (userAnswer === questionData.correctAnswer) {
+            score++;
+            question.style.borderColor = '#4caf50';
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback correct';
+            feedback.textContent = '✓ Correct! ' + questionData.feedback;
+            question.appendChild(feedback);
+        } else {
+            question.style.borderColor = '#f44336';
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback wrong';
+            feedback.textContent = `✗ Incorrect. The correct answer is ${questionData.correctAnswer}: ${questionData.answers[questionData.correctAnswer]}. ${questionData.feedback}`;
+            question.appendChild(feedback);
+        }
+    });
+
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = `<h2>Your Score: ${score} out of ${quizQuestions.length}</h2>`;
+    resultsContainer.className = '';
 }
 
-function updateProgress() {
-    const progress = (currentQuestionIndex / questions.length) * 100;
-    progressFillElement.style.width = `${progress}%`;
-    currentQuestionElement.textContent = currentQuestionIndex + 1;
-    totalQuestionsElement.textContent = questions.length;
-}
+// Build quiz when the page loads
+document.addEventListener('DOMContentLoaded', buildQuiz);
 
-function restartQuiz() {
-    resultsElement.classList.add('hide');
-    homeElement.classList.remove('hide');
-    currentQuestionIndex = 0;
-    score = 0;
-    questions = [];
-}
-
-// Make changeLanguage available globally
-window.changeLanguage = changeLanguage;
+// Show results when submit button is clicked
+document.getElementById('submit').addEventListener('click', showResults);
