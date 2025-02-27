@@ -1,12 +1,139 @@
-// Import statements
-import { initializeLanguage, changeLanguage } from './js/language-utils.js';
-import { allQuestions, getQuestions } from './questions.js';
+// Updated subject categories structure
+const subjectCategories = {
+    languages: {
+        name: 'Languages',
+        icon: '',
+        subcategories: {
+            english: {
+                name: 'English',
+                subjects: ['Grammar', 'Literature']
+            },
+            urdu: {
+                name: 'Urdu',
+                subjects: ['Grammar', 'Literature']
+            },
+            sindhi: {
+                name: 'Sindhi',
+                subjects: ['Grammar', 'Literature']
+            },
+            regionalLanguages: {
+                name: 'Regional Languages',
+                subjects: ['Pashto', 'Punjabi', 'Balochi']
+            }
+        }
+    },
+
+    mathematicsAndLogic: {
+        name: 'Mathematics & Logic',
+        icon: '',
+        subjects: ['Mathematics', 'Statistics', 'Applied Mathematics']
+    },
+
+    sciences: {
+        name: 'Sciences',
+        icon: '',
+        subcategories: {
+            naturalSciences: {
+                name: 'Natural Sciences',
+                subjects: ['Physics', 'Chemistry', 'Biology']
+            },
+            earthAndEnvironmentalSciences: {
+                name: 'Earth & Environmental Sciences',
+                subjects: ['Geography', 'Environmental Science']
+            },
+            generalScience: {
+                name: 'General Science',
+                subjects: ['General Science']
+            }
+        }
+    },
+
+    socialSciences: {
+        name: 'Social Sciences',
+        icon: '',
+        subjects: ['History', 'Pakistan Studies', 'Sociology', 'Psychology', 'Political Science', 'Economics', 'Civics']
+    },
+
+    religiousStudies: {
+        name: 'Religious Studies',
+        icon: '',
+        subjects: ['Islamiyat', 'Ethics', 'Quranic Studies']
+    },
+
+    computerScienceAndIT: {
+        name: 'Computer Science & Information Technology',
+        icon: '',
+        subjects: ['Computer Science', 'Information Technology', 'Artificial Intelligence', 'Data Science', 'Programming Languages']
+    },
+
+    businessAndCommerce: {
+        name: 'Business & Commerce',
+        icon: '',
+        subjects: ['Principles of Accounting', 'Business Studies', 'Economics', 'Finance', 'Marketing', 'Commerce']
+    },
+
+    artsAndHumanities: {
+        name: 'Arts & Humanities',
+        icon: '',
+        subjects: ['Literature', 'Fine Arts', 'Drawing', 'Music', 'Philosophy', 'Cultural Studies']
+    },
+
+    engineeringAndTechnology: {
+        name: 'Engineering & Technology',
+        icon: '',
+        subjects: ['Civil Engineering', 'Electrical Engineering', 'Mechanical Engineering', 'Software Engineering', 'Chemical Engineering', 'Biomedical Engineering']
+    },
+
+    medicalAndHealthSciences: {
+        name: 'Medical & Health Sciences',
+        icon: '',
+        subjects: ['Medicine', 'Dentistry', 'Pharmacy', 'Nursing', 'Public Health', 'Biochemistry']
+    },
+
+    agricultureAndEnvironmentalSciences: {
+        name: 'Agriculture & Environmental Sciences',
+        icon: '',
+        subjects: ['Agriculture', 'Horticulture', 'Environmental Science', 'Botany', 'Zoology']
+    },
+
+    law: {
+        name: 'Law',
+        icon: '',
+        subjects: ['Law', 'Constitutional Law', 'Criminal Law', 'International Law']
+    },
+
+    education: {
+        name: 'Education',
+        icon: '',
+        subjects: ['Education', 'Teaching Methods', 'Educational Psychology']
+    },
+
+    physicalEducationAndSports: {
+        name: 'Physical Education & Sports',
+        icon: '',
+        subjects: ['Physical Education', 'Sports Science']
+    },
+
+    vocationalAndTechnicalSubjects: {
+        name: 'Vocational & Technical Subjects',
+        icon: '',
+        subjects: ['Home Economics', 'Technical Drawing', 'Woodworking', 'Electrical Wiring', 'Carpentry']
+    },
+
+    miscellaneous: {
+        name: 'Miscellaneous',
+        icon: '',
+        subjects: ['Library Science', 'Media Studies', 'Journalism', 'Gender Studies']
+    }
+};
 
 // DOM Elements
 const homeElement = document.getElementById('home');
 const startButton = document.getElementById('start-btn');
 const categorySelectionElement = document.getElementById('category-selection');
 const subcategorySelectionElement = document.getElementById('subcategory-selection');
+const subjectSelectionElement = document.getElementById('subject-selection');
+const topicSelectionElement = document.getElementById('topic-selection');
 const quizElement = document.getElementById('quiz');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
@@ -29,6 +156,8 @@ let score = 0;
 let questions = [];
 let currentCategory = '';
 let currentSubcategory = '';
+let currentSubject = '';
+let currentTopic = '';
 let totalQuestionsAnswered = 0;
 let correctAnswers = 0;
 
@@ -36,6 +165,7 @@ let correctAnswers = 0;
 document.addEventListener('DOMContentLoaded', () => {
     initializeLanguage();
     setupEventListeners();
+    setupCategories();
     
     // Redirect to language selection if language not set
     if (!localStorage.getItem('selectedLanguage')) {
@@ -49,62 +179,89 @@ function setupEventListeners() {
         categorySelectionElement.classList.remove('hide');
     });
 
-    // Category selection
-    document.querySelectorAll('.category-btn').forEach(button => {
-        button.addEventListener('click', () => selectCategory(button.dataset.category));
-    });
-
     nextButton.addEventListener('click', handleNextQuestion);
     continueButton.addEventListener('click', continueQuiz);
     restartButton.addEventListener('click', restartQuiz);
 }
 
-function selectCategory(category) {
-    currentCategory = category;
-    categorySelectionElement.classList.add('hide');
-    
-    // Load subcategories based on category
-    const subcategoryGrid = document.querySelector('.subcategory-grid');
-    subcategoryGrid.innerHTML = '';
-    
-    const subcategories = getSubcategories(category);
-    subcategories.forEach(sub => {
+function setupCategories() {
+    const categoryGrid = document.querySelector('.category-grid');
+    categoryGrid.innerHTML = '';
+
+    Object.entries(subjectCategories).forEach(([key, category]) => {
         const button = document.createElement('button');
-        button.className = 'btn subcategory-btn';
-        button.setAttribute('data-translate', sub);
-        button.textContent = translations[getCurrentLanguage()][sub] || sub;
-        button.addEventListener('click', () => startQuiz(sub));
-        subcategoryGrid.appendChild(button);
+        button.className = 'btn category-btn';
+        button.setAttribute('data-category', key);
+        button.innerHTML = `${category.icon} <span>${category.name}</span>`;
+        button.addEventListener('click', () => selectCategory(key));
+        categoryGrid.appendChild(button);
     });
-    
-    subcategorySelectionElement.classList.remove('hide');
 }
 
-function getSubcategories(category) {
-    switch(category) {
-        case 'science':
-            return ['physics', 'chemistry', 'biology'];
-        case 'mathematics':
-            return ['algebra', 'geometry', 'calculus'];
-        case 'history':
-            return ['ancient', 'medieval', 'modern'];
-        case 'language':
-            return ['grammar', 'literature', 'vocabulary'];
-        default:
-            return [];
+function selectCategory(categoryKey) {
+    currentCategory = categoryKey;
+    const category = subjectCategories[categoryKey];
+    
+    if (category.subcategories) {
+        const subcategoryGrid = document.querySelector('.subcategory-grid');
+        subcategoryGrid.innerHTML = '';
+        
+        Object.entries(category.subcategories).forEach(([key, subcategory]) => {
+            const button = document.createElement('button');
+            button.className = 'btn subcategory-btn';
+            button.textContent = subcategory.name;
+            button.addEventListener('click', () => selectSubcategory(key));
+            subcategoryGrid.appendChild(button);
+        });
+        
+        categorySelectionElement.classList.add('hide');
+        subcategorySelectionElement.classList.remove('hide');
+    } else {
+        const subjectGrid = document.querySelector('.subject-grid');
+        subjectGrid.innerHTML = '';
+        
+        category.subjects.forEach(subject => {
+            const button = document.createElement('button');
+            button.className = 'btn subject-btn';
+            button.textContent = subject;
+            button.addEventListener('click', () => startQuiz(subject));
+            subjectGrid.appendChild(button);
+        });
+        
+        categorySelectionElement.classList.add('hide');
+        subjectSelectionElement.classList.remove('hide');
     }
 }
 
-function startQuiz(subcategory) {
-    currentSubcategory = subcategory;
-    questions = getQuestions(currentCategory, subcategory, 1000); // Get all questions
+function selectSubcategory(subcategoryKey) {
+    currentSubcategory = subcategoryKey;
+    const subcategory = subjectCategories[currentCategory].subcategories[subcategoryKey];
+    
+    const subjectGrid = document.querySelector('.subject-grid');
+    subjectGrid.innerHTML = '';
+    
+    subcategory.subjects.forEach(subject => {
+        const button = document.createElement('button');
+        button.className = 'btn subject-btn';
+        button.textContent = subject;
+        button.addEventListener('click', () => startQuiz(subject));
+        subjectGrid.appendChild(button);
+    });
+    
+    subcategorySelectionElement.classList.add('hide');
+    subjectSelectionElement.classList.remove('hide');
+}
+
+function startQuiz(topic) {
+    currentTopic = topic;
+    questions = getQuestions(currentCategory, currentSubcategory, currentSubject, currentTopic);
     
     if (!questions || questions.length === 0) {
-        alert('No questions available for this subject. Please try another one.');
+        alert('No questions available for this topic. Please try another one.');
         return;
     }
     
-    subcategorySelectionElement.classList.add('hide');
+    subjectSelectionElement.classList.add('hide');
     quizElement.classList.remove('hide');
     currentQuestionIndex = 0;
     score = 0;
@@ -115,6 +272,7 @@ function startQuiz(subcategory) {
     updateProgress();
 }
 
+// Rest of the quiz functionality remains the same
 function showQuestion() {
     const question = questions[currentQuestionIndex];
     questionElement.textContent = question.question;
@@ -146,7 +304,6 @@ function selectAnswer(answerIndex) {
     
     totalQuestionsAnswered++;
     
-    // Highlight correct and wrong answers
     const buttons = answerButtonsElement.children;
     Array.from(buttons).forEach((button, index) => {
         button.classList.add(question.answers[index].correct ? 'correct' : 'wrong');
@@ -159,7 +316,6 @@ function selectAnswer(answerIndex) {
 function handleNextQuestion() {
     currentQuestionIndex++;
     
-    // Check if we need to show a break screen
     if (currentQuestionIndex % 10 === 0) {
         showBreakScreen();
     } else if (currentQuestionIndex < questions.length) {

@@ -23,26 +23,28 @@ export function updatePageLanguage() {
 
 // Change the current language
 export function changeLanguage(lang) {
-    if (!translations[lang]) {
-        console.error(`Language ${lang} is not supported`);
-        return;
+    if (['en', 'ur', 'sd'].includes(lang)) {
+        localStorage.setItem('selectedLanguage', lang);
+        updatePageLanguage();
+        updateLanguageButtons();
     }
-    
-    localStorage.setItem('selectedLanguage', lang);
-    updatePageLanguage();
-    updateLanguageButtons();
 }
 
 // Update the language buttons to show the active language
 export function updateLanguageButtons() {
-    const currentLang = getCurrentLanguage();
+    const currentLanguage = getCurrentLanguage();
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === currentLang);
+        btn.classList.toggle('active', btn.dataset.lang === currentLanguage);
     });
 }
 
 // Initialize language handling
 export function initializeLanguage() {
+    // Set initial language
+    const currentLanguage = getCurrentLanguage();
+    document.documentElement.lang = currentLanguage;
+    
+    // Initial page update
     updatePageLanguage();
     updateLanguageButtons();
 }

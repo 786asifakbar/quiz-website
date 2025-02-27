@@ -15,47 +15,51 @@ const translations = {
         incorrect: "Incorrect",
         tryAgain: "Try Again",
         finish: "Finish",
-        
-        // Categories
-        categories: "Select Category",
-        science: "Science",
-        mathematics: "Mathematics",
-        history: "History",
-        language: "Languages",
-        
-        // Science Subcategories
-        physics: "Physics",
-        chemistry: "Chemistry",
-        biology: "Biology",
-        
-        // Mathematics Subcategories
-        algebra: "Algebra",
-        geometry: "Geometry",
-        calculus: "Calculus",
-        
-        // Progress Messages
-        progress: "Progress",
-        completed: "Completed",
-        remaining: "Questions Remaining",
         greatJob: "Great job! Take a short break.",
-        keepGoing: "Keep going! You're doing great!",
-        almostThere: "Almost there!",
-        
-        // Results
         finalScore: "Final Score",
         totalQuestions: "Total Questions",
         accuracy: "Accuracy",
-        timeSpent: "Time Spent",
-        reviewAnswers: "Review Answers",
         startNew: "Start New Quiz",
         
-        // Language Names
-        languageNames: {
-            en: "English",
-            ur: "اردو",
-            sd: "سنڌي"
-        }
+        // Categories
+        academic: "Academic Subjects",
+        civilServices: "Civil Services",
+        medical: "Medical Studies",
+        engineering: "Engineering",
+        business: "Business Studies",
+        languages: "Languages",
+        technical: "Technical Skills",
+        
+        // Academic Subcategories
+        mathematics: "Mathematics",
+        physics: "Physics",
+        chemistry: "Chemistry",
+        biology: "Biology",
+        english: "English",
+        urdu: "Urdu",
+        
+        // Civil Services Subcategories
+        currentAffairs: "Current Affairs",
+        pakistanAffairs: "Pakistan Affairs",
+        islamicStudies: "Islamic Studies",
+        
+        // Engineering Subcategories
+        computerScience: "Computer Science",
+        
+        // Business Subcategories
+        accounting: "Accounting",
+        economics: "Economics",
+        marketing: "Marketing",
+        
+        // Language Subcategories
+        sindhi: "Sindhi",
+        
+        // Technical Subcategories
+        programming: "Programming",
+        networking: "Networking",
+        database: "Database"
     },
+    
     ur: {
         // General
         welcome: "کوئز ماسٹر میں خوش آمدید",
@@ -71,48 +75,52 @@ const translations = {
         correct: "درست!",
         incorrect: "غلط",
         tryAgain: "دوبارہ کوشش کریں",
-        finish: "مکمل",
-        
-        // Categories
-        categories: "زمرہ منتخب کریں",
-        science: "سائنس",
-        mathematics: "ریاضی",
-        history: "تاریخ",
-        language: "زبانیں",
-        
-        // Science Subcategories
-        physics: "طبیعیات",
-        chemistry: "کیمیا",
-        biology: "حیاتیات",
-        
-        // Mathematics Subcategories
-        algebra: "الجبرا",
-        geometry: "جیومیٹری",
-        calculus: "حساب",
-        
-        // Progress Messages
-        progress: "پیش رفت",
-        completed: "مکمل",
-        remaining: "باقی سوالات",
-        greatJob: "شاندار! تھوڑا آرام کر لیں۔",
-        keepGoing: "جاری رکھیں! آپ بہت اچھا کر رہے ہیں!",
-        almostThere: "بس تھوڑا اور!",
-        
-        // Results
+        finish: "ختم کریں",
+        greatJob: "شاندار! تھوڑی دیر آرام کر لیں۔",
         finalScore: "حتمی سکور",
         totalQuestions: "کل سوالات",
         accuracy: "درستگی",
-        timeSpent: "صرف شدہ وقت",
-        reviewAnswers: "جوابات کا جائزہ لیں",
         startNew: "نیا کوئز شروع کریں",
         
-        // Language Names
-        languageNames: {
-            en: "English",
-            ur: "اردو",
-            sd: "سنڌي"
-        }
+        // Categories
+        academic: "تعلیمی مضامین",
+        civilServices: "سول سروس",
+        medical: "طبی تعلیم",
+        engineering: "انجینئرنگ",
+        business: "بزنس اسٹڈیز",
+        languages: "زبانیں",
+        technical: "تکنیکی مہارتیں",
+        
+        // Academic Subcategories
+        mathematics: "ریاضی",
+        physics: "طبیعیات",
+        chemistry: "کیمیا",
+        biology: "حیاتیات",
+        english: "انگریزی",
+        urdu: "اردو",
+        
+        // Civil Services Subcategories
+        currentAffairs: "حالیہ واقعات",
+        pakistanAffairs: "پاکستان افیئرز",
+        islamicStudies: "اسلامیات",
+        
+        // Engineering Subcategories
+        computerScience: "کمپیوٹر سائنس",
+        
+        // Business Subcategories
+        accounting: "اکاؤنٹنگ",
+        economics: "معاشیات",
+        marketing: "مارکیٹنگ",
+        
+        // Language Subcategories
+        sindhi: "سندھی",
+        
+        // Technical Subcategories
+        programming: "پروگرامنگ",
+        networking: "نیٹ ورکنگ",
+        database: "ڈیٹا بیس"
     },
+    
     sd: {
         // General
         welcome: "ڪوئز ماسٽر ۾ ڀليڪار",
@@ -128,47 +136,50 @@ const translations = {
         correct: "درست!",
         incorrect: "غلط",
         tryAgain: "ٻيھر ڪوشش ڪريو",
-        finish: "مڪمل",
+        finish: "مڪمل ڪريو",
+        greatJob: "شاندار! ھاڻي ٿورو آرام ڪريو.",
+        finalScore: "حتمي اسڪور",
+        totalQuestions: "ڪل سوال",
+        accuracy: "درستگي",
+        startNew: "نئون ڪوئز شروع ڪريو",
         
         // Categories
-        categories: "زمرو چونڊيو",
-        science: "سائنس",
-        mathematics: "رياضي",
-        history: "تاريخ",
-        language: "ٻوليون",
+        academic: "تعليمي مضمون",
+        civilServices: "سول سروس",
+        medical: "طبي تعليم",
+        engineering: "انجنيئرنگ",
+        business: "بزنس اسٽڊيز",
+        languages: "ٻوليون",
+        technical: "ٽيڪنيڪل مھارتون",
         
-        // Science Subcategories
+        // Academic Subcategories
+        mathematics: "رياضي",
         physics: "طبعيات",
         chemistry: "ڪيميا",
         biology: "حياتيات",
+        english: "انگريزي",
+        urdu: "اردو",
         
-        // Mathematics Subcategories
-        algebra: "الجبرا",
-        geometry: "جيومٽري",
-        calculus: "حساب",
+        // Civil Services Subcategories
+        currentAffairs: "حاليہ واقعا",
+        pakistanAffairs: "پاڪستان افيئرز",
+        islamicStudies: "اسلاميات",
         
-        // Progress Messages
-        progress: "ترقي",
-        completed: "مڪمل",
-        remaining: "باقي سوال",
-        greatJob: "شاندار! ھڪڙو ننڍو وقفو وٺو.",
-        keepGoing: "جاري رکو! توھان تمام سٺو ڪري رھيا آھيو!",
-        almostThere: "بس ٿورو پيو رھي!",
+        // Engineering Subcategories
+        computerScience: "ڪمپيوٽر سائنس",
         
-        // Results
-        finalScore: "آخري اسڪور",
-        totalQuestions: "ڪل سوال",
-        accuracy: "درستگي",
-        timeSpent: "صرف ٿيل وقت",
-        reviewAnswers: "جوابن جو جائزو وٺو",
-        startNew: "نئون ڪوئز شروع ڪريو",
+        // Business Subcategories
+        accounting: "اڪائونٽنگ",
+        economics: "معاشيات",
+        marketing: "مارڪيٽنگ",
         
-        // Language Names
-        languageNames: {
-            en: "English",
-            ur: "اردو",
-            sd: "سنڌي"
-        }
+        // Language Subcategories
+        sindhi: "سنڌي",
+        
+        // Technical Subcategories
+        programming: "پروگرامنگ",
+        networking: "نيٽ ورڪنگ",
+        database: "ڊيٽا بيس"
     }
 };
 
